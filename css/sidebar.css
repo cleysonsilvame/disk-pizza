@@ -1,0 +1,36 @@
+.bg-danger{
+  background-color: rgb(241, 94, 41) !important;
+}
+.bg-secondary{
+  background-color: rgb(223, 223, 223) !important;
+}
+
+.nav-pills .nav-link.active {
+  background-color: rgb(241, 94, 41) !important;
+  font-weight: bold;
+}
+
+.nav-pills .nav-link.active:hover {
+  background-color: rgb(199, 66, 17) !important;
+  font-weight: bold;
+}
+
+sidebar {
+  width: 300px;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(50, 50, 48, 0.5);
+  -moz-box-shadow:    0px 0px 10px 0px rgba(50, 50, 48, 0.5);
+  box-shadow:         0px 0px 10px 0px rgba(50, 50, 48, 0.5);
+}
+
+sidebar .sidebar-title {
+  height: 70px;
+}
+
+sidebar .sidebar-title i{
+  color: rgb(241, 94, 41);
+  size: 20px;
+}
+
+sidebar .sidebar-title h2{
+  padding-left: 10px;
+}
