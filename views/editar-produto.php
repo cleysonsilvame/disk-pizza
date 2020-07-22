@@ -32,9 +32,10 @@
       <header class="d-flex flew-row align-items-center justify-content-center bg-danger text-dark">
         <h1><i class="fas fa-utensils"></i> Editar Produtos</h1>
       </header>
-      <div class="main-content">
-        <p>main</p>
-      </div>
+      <div class="main-content p-3 w-100">
+        <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
+          <a class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100" href="cadastrar-produto.php">Cadastrar Produto</a>
+        </div>
     </main>
   </div>
 
