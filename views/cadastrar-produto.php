@@ -12,7 +12,7 @@ if($acao == 'insert'){
   $sql = "INSERT INTO tb_produto (nome_produto, tipo_produto, valor_produto)values('$nome', '$tipo', '$valor')";
 
   if(!mysqli_query($link, $sql)){
-    die("Erro ao inserir as informações do formulário na tabela de clientes: ". mysqli_error($link));
+    die("Erro ao inserir as informações do formulário na tabela de produtos: ". mysqli_error($link));
   }
   else{
     echo "<script>alert('Dados inseridos com sucesso.');</script>";          
