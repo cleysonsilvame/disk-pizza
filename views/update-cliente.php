@@ -91,7 +91,7 @@ if ($acao == 'update') {
                 </div>
                   <button type='submit'
                   class='btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100'>Editar
-                  Produto</button>
+                  Cliente</button>
               </form>
             </div>
       </main>
