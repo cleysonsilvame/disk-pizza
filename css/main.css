@@ -26,11 +26,12 @@ main .main-content{
   border: none;
 }
 
-.panel-row button{
+.panel-row a{
   font-size: 20px;
+  background-color: whitesmoke;
 }
 
-.panel-row button:hover{
+.panel-row a:hover{
   background-color: #343a40;
   color: whitesmoke;
   transform: scale(1.02);
