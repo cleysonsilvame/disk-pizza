@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/all.css">
+  <link rel="stylesheet" href="../css/all.css">
   <title>Disk Pizza</title>
 </head>
 
@@ -17,22 +17,23 @@
         <a href="/index.html" class="btn text-light"><h2><i class="fas fa-pizza-slice fa"></i> Disk-Pizza</h2></a>
       </div>
       <ul class="nav nav-pills flex-column p-4">
-        <li class="nav-item ">
+      <li class="nav-item ">
           <a href="/views/menu-pedidos.php" class="nav-link text-light"><i class="fas fa-list"></i> Menu de Pedidos</a>
         </li>
         <li class="nav-item">
           <a href="/views/editar-cliente.php" class="nav-link text-light"><i class="fas fa-user-cog"></i> Editar Clientes</a>
         </li>
         <li class="nav-item">
-          <a href="/views/editar-produto.php" class="nav-link text-light"><i class="fas fa-utensils"></i> Editar Produtos</a>
+          <a href="/views/editar-produto.php" class="nav-link text-light active"><i class="fas fa-utensils"></i> Editar Produtos</a>
         </li>
       </ul>
     </sidebar>
     <main class="d-block h-100 bg-secondary">
       <header class="d-flex flew-row align-items-center justify-content-center bg-danger text-dark">
-        <h1><i class="fas fa-door-open"></i> Bem-vindo</h1>
+        <h1><i class="fas fa-utensils"></i> Editar Produtos</h1>
       </header>
       <div class="main-content">
+        <p>main</p>
       </div>
     </main>
   </div>

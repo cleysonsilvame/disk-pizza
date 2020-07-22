@@ -14,18 +14,17 @@
   <div class="flex-dashboard d-flex flex-row h-100 w-100">
     <sidebar class="h-100 bg-dark text-light">
       <div class="sidebar-title d-flex flex-row justify-content-center align-items-center">
-        
-        <h2><i class="fas fa-pizza-slice fa"></i> Disk-Pizza</h2>
+        <a href="/index.html" class="btn text-light"><h2><i class="fas fa-pizza-slice fa"></i> Disk-Pizza</h2></a>
       </div>
       <ul class="nav nav-pills flex-column p-4">
-        <li class="nav-item ">
-          <a href="../index.html" class="nav-link text-light"><i class="fas fa-list"></i> Menu de Pedidos</a>
+      <li class="nav-item ">
+          <a href="/views/menu-pedidos.php" class="nav-link text-light"><i class="fas fa-list"></i> Menu de Pedidos</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="nav-link text-light active"><i class="fas fa-user-cog"></i> Editar Clientes</a>
+          <a href="/views/editar-cliente.php" class="nav-link text-light active"><i class="fas fa-user-cog"></i> Editar Clientes</a>
         </li>
         <li class="nav-item">
-          <a href="editar-produto.html" class="nav-link text-light"><i class="fas fa-utensils"></i> Editar Produtos</a>
+          <a href="/views/editar-produto.php" class="nav-link text-light"><i class="fas fa-utensils"></i> Editar Produtos</a>
         </li>
       </ul>
     </sidebar>
@@ -35,7 +34,7 @@
       </header>
       <div class="main-content p-3 w-100">
         <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
-          <a class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100" href="#">Cadastrar Cliente</a>
+          <a class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100" href="cadastrar-cliente.php">Cadastrar Cliente</a>
         </div>
     </main>
   </div>
