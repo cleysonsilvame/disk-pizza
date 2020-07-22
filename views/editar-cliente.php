@@ -36,6 +36,18 @@
         <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
           <a class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100" href="cadastrar-cliente.php">Cadastrar Cliente</a>
         </div>
+        <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
+          <form method="POST" action="update-cliente.php" class="p-0 container">
+              <div class="form-row">
+                <div class="col-4">
+                  <input type="number" class="form-control panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100 text-center" placeholder="Código para editar o cliente" min='0' name="inputCodigo" required>
+                </div>
+                <div class="col-8">
+                  <button type='submit' class='btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100'>Editar Cliente</button>
+                </div>
+              </div>
+            </form>
+        </div>
     </main>
   </div>
 

@@ -2,6 +2,8 @@
 
 $acao = isset($_GET['acao']);
 
+echo $acao;
+
 if($acao == 'insert'){
   include_once 'conexao.php';
   
