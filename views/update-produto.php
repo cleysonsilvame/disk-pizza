@@ -2,9 +2,10 @@
 include_once 'conexao.php';
 
 $acao = isset($_GET['acao']);
-$id = $_POST['inputCodigo'];
+
 
 if ($acao == 'update') {
+  $id = $_POST['inputCodigo'];
   $nome = $_POST['inputNome'];
   $valor = $_POST['inputValor'];
   $tipo = $_POST['inputTipo'];
@@ -20,6 +21,8 @@ if ($acao == 'update') {
   mysqli_close($link);
   header("Location:editar-produto.php");
 } else {
+  $id = $_GET['inputCodigo'];
+
   $sql = "SELECT * FROM tb_produto WHERE cod_produto ='$id'";
 
   $resultado = mysqli_query($link, $sql) or die("Erro ao retornar o valor do banco de dados<br>" . mysqli_error($link));

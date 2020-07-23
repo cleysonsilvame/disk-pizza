@@ -37,17 +37,45 @@
         <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
           <a class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100" href="cadastrar-produto.php">Cadastrar Produto</a>
         </div>
-        <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
-          <form method="POST" action="update-produto.php" class="p-0 container">
-            <div class="form-row">
-              <div class="col-4">
-                <input type="number" class="form-control panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100 text-center" placeholder="Código para editar o produto" min='0' name="inputCodigo" required>
-              </div>
-              <div class="col-8">
-                <button type='submit' class='btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100'>Editar Produto</button>
-              </div>
-            </div>
-          </form>
+        <div class="panel-row d-flex flex-row align-items-center mt-3 p-1 justify-content-center">
+          <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome produto</th>
+                <th scope="col">Valor</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
+            include_once 'conexao.php';
+
+            $sql = "SELECT * FROM tb_produto";
+            $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores do banco de dados");
+
+            while ($registro = mysqli_fetch_array($resultado)) {
+              $id = $registro['cod_produto'];
+              $nome = $registro['nome_produto'];
+              $valor = $registro['valor_produto'];
+              $tipo = $registro['tipo_produto'];
+              echo "
+              <tr>
+                <th scope='row'>" . $id . "</th>
+                <td>" . $nome . "</td>
+                <td>R$ " . number_format($valor, 2, ',', '.'). "</td>
+                <td>" . $tipo . "</td>
+                <td>
+                  <a href='/views/update-produto.php?inputCodigo=$id' class='btn text-dark'><i class='fas fa-edit'></i></a>
+                  <a href='/views/delete-produto.php' class='btn text-dark'><i class='fas fa-trash'></i></a>
+                </td>
+              </tr>";
+            }
+            ?>
+            </tbody>
+          </table>
+
         </div>
     </main>
   </div>
