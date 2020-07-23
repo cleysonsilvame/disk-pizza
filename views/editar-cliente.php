@@ -68,6 +68,7 @@
                 </td>
               </tr>";
             }
+            mysqli_close($link);
             ?>
             </tbody>
           </table>

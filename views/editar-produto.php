@@ -68,14 +68,14 @@
                 <td>" . $tipo . "</td>
                 <td>
                   <a href='/views/update-produto.php?inputCodigo=$id' class='btn text-dark'><i class='fas fa-edit'></i></a>
-                  <a href='/views/delete-produto.php' class='btn text-dark'><i class='fas fa-trash'></i></a>
+                  <a href='/views/delete-produto.php?inputCodigo=$id' class='btn text-dark'><i class='fas fa-trash'></i></a>
                 </td>
               </tr>";
             }
+            mysqli_close($link);
             ?>
             </tbody>
           </table>
-
         </div>
     </main>
   </div>
