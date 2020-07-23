@@ -2,9 +2,10 @@
 include_once 'conexao.php';
 
 $acao = isset($_GET['acao']);
-$id = $_POST['inputCodigo'];
+
 
 if ($acao == 'update') {
+  $id = $_POST['inputCodigo'];
   $telefone = $_POST['inputTelefone'];
   $endereco = $_POST['inputEndereco'];
 
@@ -19,6 +20,7 @@ if ($acao == 'update') {
   mysqli_close($link);
   header("Location:editar-cliente.php");
 } else {
+  $id = $_GET['inputCodigo'];
   $sql = "SELECT * FROM tb_cliente WHERE cod_cliente ='$id'";
 
   $resultado = mysqli_query($link, $sql) or die("Erro ao retornar o valor do banco de dados<br>" . mysqli_error($link));

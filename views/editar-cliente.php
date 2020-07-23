@@ -37,16 +37,41 @@
           <a class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100" href="cadastrar-cliente.php">Cadastrar Cliente</a>
         </div>
         <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
-          <form method="POST" action="update-cliente.php" class="p-0 container">
-              <div class="form-row">
-                <div class="col-4">
-                  <input type="number" class="form-control panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100 text-center" placeholder="Código para editar o cliente" min='0' name="inputCodigo" required>
-                </div>
-                <div class="col-8">
-                  <button type='submit' class='btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100'>Editar Cliente</button>
-                </div>
-              </div>
-            </form>
+        <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Número cliente</th>
+                <th scope="col">Endereço cliente</th>
+                <th scope="col">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+            <?php
+            include_once 'conexao.php';
+
+            $sql = "SELECT * FROM tb_cliente";
+            $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores do banco de dados");
+
+            while ($registro = mysqli_fetch_array($resultado)) {
+              $id = $registro['cod_cliente'];
+              $telefone = $registro['telefone_cliente'];
+              $endereco = $registro['endereco_cliente'];
+              echo "
+              <tr>
+                <th scope='row'>" . $id . "</th>
+                <td>" . $telefone . "</td>
+                <td>" . $endereco. "</td>
+                <td>
+                  <a href='/views/update-cliente.php?inputCodigo=$id' class='btn text-dark'><i class='fas fa-edit'></i></a>
+                  <a href='/views/delete-cliente.php' class='btn text-dark'><i class='fas fa-trash'></i></a>
+                </td>
+              </tr>";
+            }
+            ?>
+            </tbody>
+          </table>
+
         </div>
     </main>
   </div>
