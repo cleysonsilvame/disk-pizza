@@ -36,7 +36,7 @@
         <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
           <a class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100" href="cadastrar-cliente.php">Cadastrar Cliente</a>
         </div>
-        <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
+        <div class="panel-row d-flex flex-row align-items-center mt-3 p-1 justify-content-center">
         <table class="table table-striped">
             <thead class="thead-dark">
               <tr>
@@ -64,7 +64,7 @@
                 <td>" . $endereco. "</td>
                 <td>
                   <a href='/views/update-cliente.php?inputCodigo=$id' class='btn text-dark'><i class='fas fa-edit'></i></a>
-                  <a href='/views/delete-cliente.php' class='btn text-dark'><i class='fas fa-trash'></i></a>
+                  <a href='/views/delete-cliente.php?inputCodigo=$id' class='btn text-dark'><i class='fas fa-trash'></i></a>
                 </td>
               </tr>";
             }

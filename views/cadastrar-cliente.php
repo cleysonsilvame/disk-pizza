@@ -63,7 +63,7 @@ else{
             <div class='form-row mt-5'>
               <div class='form-group col-md-4'>
                 <label for='inputTelefone'>Telefone</label>
-                <input type='text' class='form-control' id='inputTelefone' name='inputTelefone' placeholder='(99) 9 9999-9999' maxlength='13' required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                <input type='text' class='form-control' id='inputTelefone' name='inputTelefone' placeholder='(DDD) 9 9999-9999' maxlength='13' required onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
               </div>
               <div class='form-group col-md-8'>
                 <label for='inputEndereco'>Endereço</label>
