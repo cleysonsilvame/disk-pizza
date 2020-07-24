@@ -37,3 +37,7 @@ main .main-content{
   transform: scale(1.02);
   transition: 0.2s;
 }
+
+.display-4 {
+  font-size: 30px;
+}

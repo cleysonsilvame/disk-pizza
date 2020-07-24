@@ -40,113 +40,86 @@
       <div class="main-content p-3 w-100">
         <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
           <a class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mr-2 mt-1 w-100"
-            href="#">Novo Pedido</a>
+            href="cadastrar-produto.php">Novo Pedido</a>
           <a class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 ml-2 mt-1 w-100"
-            href="#">Pedidos Realizados</a>
+            href="cadastrar-produto.php">Pedidos Realizados</a>
         </div>
           <div class="container-fluid mt-3">
             <h2 class="text-center display-4">Pedidos Ativos</h2>
-            <?php
-              include_once 'conexao.php';
-
-              $sql = "SELECT 
-              pe.cod_pedido,
-              pe.datahora_pedido,
-              pe.horasaida_pedido,
-              pe.tipo_pedido,
-              c.cod_cliente,
-              c.telefone_cliente,
-              c.endereco_cliente
-              FROM tb_pedido AS pe
-              LEFT JOIN tb_cliente AS c ON pe.cod_cliente = c.cod_cliente";
-
-              $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores do banco de dados");
-
-              while($registro = mysqli_fetch_array($resultado)){
-                $codPedido = $registro['cod_pedido'];
-                $dhPedido = $registro['datahora_pedido'];
-                $hsPedido = $registro['horasaida_pedido'];
-                $tpPedido = $registro['tipo_pedido'];
-                $codCliente = $registro['cod_cliente'];
-                $telCliente = $registro['telefone_cliente'];
-                $endCliente = $registro['endereco_cliente'];
-
-
-                echo "<div class='row'>
-              <div class='col-6 p-0 pr-2'>
-                <table class='table table-striped'>
-                  <thead class='thead-dark'>
+            <div class="row">
+              <div class="col-6 p-0 pr-2">
+                <table class="table table-striped">
+                  <thead class="thead-dark">
                     <tr>
-                      <th scope='col'>#</th>
-                      <th scope='col'>Nome Produto</th>
-                      <th scope='col'>Tipo</th>
-                      <th scope='col'>Valor</th>
-                      <th scope='col'>Quantidade</th>
-                      <th scope='col'>Total</th>
+                      <th scope="col">#</th>
+                      <th scope="col">Nome Produto</th>
+                      <th scope="col">Tipo</th>
+                      <th scope="col">Valor</th>
+                      <th scope="col">Quantidade</th>
+                      <th scope="col">Total</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <th scope='row'>".$codPedido."</th>
-                      <td>"."</td>
-                      <td>"."</td>
-                      <td>"."</td>
-                      <td>"."</td>
-                      <td></td>
+                      <th scope='row'>1</th>
+                      <td>Esfiha</td>
+                      <td>Salgada</td>
+                      <td>R$ 12</td>
+                      <td>2</td>
+                      <td>R$ 14</td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-              <div class='col-6 pl-4'>
-                <div class='row'>
-                  <table class='table table-sm table-striped'>
-                    <thead class='thead-dark'>
+              <div class="col-6 pl-4">
+                <div class="row">
+                  <table class="table table-sm table-striped">
+                    <thead class="thead-dark">
                       <tr>
-                        <th scope='col'>#</th>
-                        <th scope='col'>Telefone Cliente</th>
-                        <th scope='col'>Endereço</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Telefone Cliente</th>
+                        <th scope="col">Endereço</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <th scope='row'>".$codCliente."</th>
-                        <td>".$telCliente."</td>
-                        <td>".$endCliente."</td>
+                        <th scope='row'>1</th>
+                        <td>1234567789</td>
+                        <td>Rua Doze 640 Cohatrac III São Luís</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <div class='row'>
-                  <table class='table table-sm table-striped'>
-                    <thead class='thead-dark'>
+                <div class="row">
+                  <table class="table table-sm table-striped">
+                    <thead class="thead-dark">
                       <tr>
-                        <th scope='col'>Data/Hora do Pedido</th>
-                        <th scope='col'>Data/Hora da Saída</th>
-                        <th scope='col'>Tipo do Pedido</th>
+                        <th scope="col">Data/Hora do Pedido</th>
+                        <th scope="col">Data/Hora da Saída</th>
+                        <th scope="col">Tipo do Pedido</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td>".$dhPedido."</td>
-                        <td>".$hsPedido."</td>
-                        <td>".$tpPedido."</td>
+                        <td>20/20/20 14:00</td>
+                        <td>20/20/20 14:05</td>
+                        <td>Delivery</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
               </div> 
             </div>           
-            <div class='panel-row d-flex flex-row align-items-center mb-4 justify-content-center'>
-              <div class='col-6 pl-0'>
-                  <a a href='#' class='btn text-dark w-100'><i class='fas fa-edit'></i></a>
+            <div class="panel-row d-flex flex-row align-items-center justify-content-center">
+              <div class="col-6 pl-0">
+                  <a a href='/views/update-produto.php?inputCodigo=$id' class='btn text-dark w-100'><i class='fas fa-edit'></i></a>
                 </div>
-                <div class='col-6 pr-0'>
-                  <a href='#' class='btn text-dark w-100'><i class='fas fa-trash'></i></a>
+                <div class="col-6 pr-0">
+                  <a href='/views/delete-produto.php?inputCodigo=$id' class='btn text-dark w-100'><i class='fas fa-trash'></i></a>
                 </div>
-            </div>";
-              }    
-?>
+            </div>
           </div>
+             
       </div>
     </main>
   </div>
