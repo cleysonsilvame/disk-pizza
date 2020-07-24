@@ -40,133 +40,135 @@
       <div class="main-content p-3 w-100">
         <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
           <a class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mr-2 mt-1 w-100"
-            href="#">Novo Pedido</a>
+            href="cadastrar-pedido.php">Novo Pedido</a>
           <a class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 ml-2 mt-1 w-100"
             href="#">Pedidos Realizados</a>
         </div>
           <div class="container-fluid mt-3">
             <h2 class="text-center display-4">Pedidos Ativos</h2>
             <?php
-              include_once 'conexao.php';
-              $sqlP = "SELECT 
-              p.nome_produto,
-              p.valor_produto,
-              ip.quant_item_pedido,
-              p.tipo_produto,
-              ip.cod_pedido
-              FROM tb_item_pedido AS ip
-              INNER JOIN tb_produto AS p ON ip.cod_produto = p.cod_produto";
+            include_once 'conexao.php';
+            $sql = "SELECT 
+                    pe.cod_pedido,
+                    pe.datahora_pedido,
+                    pe.horasaida_pedido,
+                    pe.tipo_pedido,
+                    c.cod_cliente,
+                    c.telefone_cliente,
+                    c.endereco_cliente
+                    FROM tb_pedido AS pe
+                    LEFT JOIN tb_cliente AS c ON pe.cod_cliente = c.cod_cliente";
+
+            $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores do banco de dados");
+
+            while ($registro = mysqli_fetch_array($resultado)) {
+              $codPedido = $registro['cod_pedido'];
+              $dhPedido = $registro['datahora_pedido'];
+              $hsPedido = $registro['horasaida_pedido'];
+              $tpPedido = $registro['tipo_pedido'];
+              $codCliente = $registro['cod_cliente'];
+              $telCliente = $registro['telefone_cliente'];
+              $endCliente = $registro['endereco_cliente'];
+
+
+              echo "<div class='row'>
+                      <div class='col-6 p-0 pr-2'>
+                        <table class='table table-striped'>
+                          <thead class='thead-dark'>
+                            <tr>
+                              <th scope='col'>" . $codPedido . "</th>
+                              <th scope='col'>Nome Produto</th>
+                              <th scope='col'>Tipo</th>
+                              <th scope='col'>Valor</th>
+                              <th scope='col'>Quantidade</th>
+                              <th scope='col'>Total</th>
+                            </tr>
+                          </thead>
+                          <tbody>";
+              
+              $sqlP =  "SELECT 
+                        p.nome_produto,
+                        p.valor_produto,
+                        ip.quant_item_pedido,
+                        p.tipo_produto,
+                        ip.cod_pedido
+                        FROM tb_item_pedido AS ip
+                        INNER JOIN tb_produto AS p ON ip.cod_produto = p.cod_produto
+                        WHERE ip.cod_pedido = " . $codPedido;
 
               $resultadoP = mysqli_query($link, $sqlP) or die("Erro ao retornar os valores do banco de dados");
-              
-              // $arr = array();
-              // while($row = mysqli_fetch_assoc($resultadoP)){
-              //     $arr[] = $row;
-              // }
+              while ($registroP = mysqli_fetch_array($resultadoP)) {
+                $nomeProduto = $registroP['nome_produto'];
+                $tpProduto = $registroP['tipo_produto'];
+                $valorProduto = $registroP['valor_produto'];
+                $quantProduto = $registroP['quant_item_pedido'];
+                $totalPedido = $valorProduto * $quantProduto;
 
-              // echo $arr[1];
+                
+                echo "<tr>
+                        <td></td>
+                        <td>" . $nomeProduto . "</td>
+                        <td>" . $tpProduto . "</td>
+                        <td>R$ " . number_format($valorProduto, 2, ',', '.') . "</td>
+                        <td>" . $quantProduto . "</td>
+                        <td>R$ " . number_format($totalPedido, 2, ',', '.') . "</td>
+                      </tr>";
+              }
 
-              $sql = "SELECT 
-              pe.cod_pedido,
-              pe.datahora_pedido,
-              pe.horasaida_pedido,
-              pe.tipo_pedido,
-              c.cod_cliente,
-              c.telefone_cliente,
-              c.endereco_cliente
-              FROM tb_pedido AS pe
-              LEFT JOIN tb_cliente AS c ON pe.cod_cliente = c.cod_cliente";
-
-
-              $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores do banco de dados");
-
-              while($registro = mysqli_fetch_array($resultado)){
-                $codPedido = $registro['cod_pedido'];
-                $dhPedido = $registro['datahora_pedido'];
-                $hsPedido = $registro['horasaida_pedido'];
-                $tpPedido = $registro['tipo_pedido'];
-                $codCliente = $registro['cod_cliente'];
-                $telCliente = $registro['telefone_cliente'];
-                $endCliente = $registro['endereco_cliente'];
-
-
-                echo "<div class='row'>
-              <div class='col-6 p-0 pr-2'>
-                <table class='table table-striped'>
-                  <thead class='thead-dark'>
-                    <tr>
-                      <th scope='col'>#</th>
-                      <th scope='col'>Nome Produto</th>
-                      <th scope='col'>Tipo</th>
-                      <th scope='col'>Valor</th>
-                      <th scope='col'>Quantidade</th>
-                      <th scope='col'>Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <th scope='row'>".$codPedido."</th>
-                      ";
-
-                           echo" <td>"."</td>
-                                 <td>"."</td>
-                                 <td>"."</td>
-                                 <td>"."</td>
-                                 <td></td>"; 
-                    echo "</tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class='col-6 pl-4'>
-                <div class='row'>
-                  <table class='table table-sm table-striped'>
-                    <thead class='thead-dark'>
-                      <tr>
-                        <th scope='col'>#</th>
-                        <th scope='col'>Telefone Cliente</th>
-                        <th scope='col'>Endereço</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope='row'>".$codCliente."</th>
-                        <td>".$telCliente."</td>
-                        <td>".$endCliente."</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class='row'>
-                  <table class='table table-sm table-striped'>
-                    <thead class='thead-dark'>
-                      <tr>
-                        <th scope='col'>Data/Hora do Pedido</th>
-                        <th scope='col'>Data/Hora da Saída</th>
-                        <th scope='col'>Tipo do Pedido</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>".$dhPedido."</td>
-                        <td>".$hsPedido."</td>
-                        <td>".$tpPedido."</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div> 
-            </div>           
-            <div class='panel-row d-flex flex-row align-items-center mb-4 justify-content-center'>
-              <div class='col-6 pl-0'>
-                  <a a href='#' class='btn text-dark w-100'><i class='fas fa-edit'></i></a>
-                </div>
-                <div class='col-6 pr-0'>
-                  <a href='#' class='btn text-dark w-100'><i class='fas fa-trash'></i></a>
-                </div>
-            </div>
-            <hr>";
-              }    
-?>
+              echo "  </tbody>
+                    </table>
+                    </div>
+                    <div class='col-6 pl-4'>
+                      <div class='row'>
+                        <table class='table table-sm table-striped'>
+                          <thead class='thead-dark'>
+                            <tr>
+                              <th scope='col'>#</th>
+                              <th scope='col'>Telefone Cliente</th>
+                              <th scope='col'>Endereço</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope='row'>" . $codCliente . "</th>
+                              <td>" . $telCliente . "</td>
+                              <td>" . $endCliente . "</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class='row'>
+                        <table class='table table-sm table-striped'>
+                          <thead class='thead-dark'>
+                            <tr>
+                              <th scope='col'>Data/Hora do Pedido</th>
+                              <th scope='col'>Data/Hora da Saída</th>
+                              <th scope='col'>Tipo do Pedido</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>" . $dhPedido . "</td>
+                              <td>" . $hsPedido . "</td>
+                              <td>" . $tpPedido . "</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div> 
+                  </div>           
+                  <div class='panel-row d-flex flex-row align-items-center mb-4 justify-content-center'>
+                    <div class='col-6 pl-0'>
+                        <a a href='#' class='btn text-dark w-100'><i class='fas fa-edit'></i></a>
+                      </div>
+                      <div class='col-6 pr-0'>
+                        <a href='#' class='btn text-dark w-100'><i class='fas fa-trash'></i></a>
+                      </div>
+                  </div>
+                  <hr>";
+            }
+            mysqli_close($link);
+            ?>
           </div>
       </div>
     </main>

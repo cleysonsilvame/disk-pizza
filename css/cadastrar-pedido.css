@@ -1,0 +1,11 @@
+ input{
+  font-size: 20px;
+  background-color: whitesmoke !important;
+}
+
+input[type="submit"]:hover{
+  background-color: #343a40 !important;
+  color: whitesmoke !important;
+  transform: scale(1.02);
+  transition: 0.2s;
+}
