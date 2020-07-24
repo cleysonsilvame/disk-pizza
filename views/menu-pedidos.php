@@ -48,6 +48,23 @@
             <h2 class="text-center display-4">Pedidos Ativos</h2>
             <?php
               include_once 'conexao.php';
+              $sqlP = "SELECT 
+              p.nome_produto,
+              p.valor_produto,
+              ip.quant_item_pedido,
+              p.tipo_produto,
+              ip.cod_pedido
+              FROM tb_item_pedido AS ip
+              INNER JOIN tb_produto AS p ON ip.cod_produto = p.cod_produto";
+
+              $resultadoP = mysqli_query($link, $sqlP) or die("Erro ao retornar os valores do banco de dados");
+              
+              // $arr = array();
+              // while($row = mysqli_fetch_assoc($resultadoP)){
+              //     $arr[] = $row;
+              // }
+
+              // echo $arr[1];
 
               $sql = "SELECT 
               pe.cod_pedido,
@@ -59,6 +76,7 @@
               c.endereco_cliente
               FROM tb_pedido AS pe
               LEFT JOIN tb_cliente AS c ON pe.cod_cliente = c.cod_cliente";
+
 
               $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores do banco de dados");
 
@@ -88,12 +106,14 @@
                   <tbody>
                     <tr>
                       <th scope='row'>".$codPedido."</th>
-                      <td>"."</td>
-                      <td>"."</td>
-                      <td>"."</td>
-                      <td>"."</td>
-                      <td></td>
-                    </tr>
+                      ";
+
+                           echo" <td>"."</td>
+                                 <td>"."</td>
+                                 <td>"."</td>
+                                 <td>"."</td>
+                                 <td></td>"; 
+                    echo "</tr>
                   </tbody>
                 </table>
               </div>
@@ -143,7 +163,8 @@
                 <div class='col-6 pr-0'>
                   <a href='#' class='btn text-dark w-100'><i class='fas fa-trash'></i></a>
                 </div>
-            </div>";
+            </div>
+            <hr>";
               }    
 ?>
           </div>
