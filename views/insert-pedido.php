@@ -66,6 +66,7 @@ else{
     }      
   }
   mysqli_close($link);
+  session_destroy();
   header("Location:menu-pedidos.php");
 }
 
