@@ -279,6 +279,4 @@ function InserirCliente($clientes)
 	}
 	mysqli_close($link);
 }
-
-InserirCliente($json);
 ?>

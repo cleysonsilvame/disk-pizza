@@ -55,7 +55,9 @@
                     pe.tipo_pedido,
                     c.cod_cliente,
                     c.telefone_cliente,
-                    c.endereco_cliente
+                    c.endereco_cliente,
+                    c.num_end_cliente,
+                    c.cep_cliente
                     FROM tb_pedido AS pe
                     LEFT JOIN tb_cliente AS c ON pe.cod_cliente = c.cod_cliente
                     ORDER BY pe.datahora_pedido";
@@ -69,7 +71,9 @@
               $tpPedido = $registro['tipo_pedido'];
               $codCliente = $registro['cod_cliente'];
               $telCliente = $registro['telefone_cliente'];
-              $endCliente = $registro['endereco_cliente'];
+              $endCliente = isset($registro['endereco_cliente'])? $registro['endereco_cliente'].", " : "";
+              $numCliente = $registro['num_end_cliente'];
+              $cepCliente = $registro['cep_cliente'];
 
 
               echo "<div class='row'>
@@ -126,6 +130,7 @@
                             <tr>
                               <th scope='col'>#</th>
                               <th scope='col'>Telefone Cliente</th>
+                              <th scope='col'>CEP</th>
                               <th scope='col'>Endereço</th>
                             </tr>
                           </thead>
@@ -133,7 +138,8 @@
                             <tr>
                               <th scope='row'>" . $codCliente . "</th>
                               <td>" . $telCliente . "</td>
-                              <td>" . $endCliente . "</td>
+                              <td>" . $cepCliente . "</td>
+                              <td>" . $endCliente.$numCliente . "</td>
                             </tr>
                           </tbody>
                         </table>
