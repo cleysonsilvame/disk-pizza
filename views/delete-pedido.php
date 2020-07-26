@@ -11,7 +11,7 @@
     echo "<script>alert('Dados deletados da tabela pedido e tabela item_pedido.');</script>";          
   }
   mysqli_close($link);
-  header("Location:editar-produto.php");
+  header("Location:menu-pedidos.php");
 
 
 ?>
