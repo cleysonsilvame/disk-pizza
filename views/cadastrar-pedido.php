@@ -77,7 +77,9 @@ if(isset($_POST['form'])){
       </header>
       <div class="main-content p-3 w-100">
         <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
-          <button type="submit" class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100">Cadastrar Pedido</button>
+          <form class="d-flex flex-row w-100 " action="cadastrar-pedido.php?acao=confirmar">
+            <button type="submit" class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100">Cadastrar Pedido</button>
+          </form>
         </div>
         <div class="container-fluid mt-3">
           <div class='row'>
@@ -163,17 +165,14 @@ if(isset($_POST['form'])){
                     <tr>                      
                       <?php
                       
-                      if($acao == 'c') {echo $_SESSION['inputClientes'];
-                      if($_SESSION['inputClientes'] == 0){
-                        $tpPedido = "Delivery";
-                      }else{
-                        $tpPedido = "Balcão";
-                      }
+                      if($acao == 'c') {
                         if ($_POST['inputClientes'] == 0) {
+                          $_SESSION['tpPedido'] = 'Balcão';
                           $_SESSION['idCliente'] = '';
                           $_SESSION['telefone'] = '';
                           $_SESSION['endereco'] = '';
                         }else{
+                          $_SESSION['tpPedido'] = 'Delivery';
                           $_SESSION['inputClientes'] = $_POST['inputClientes'];  
                           $sql = "SELECT * FROM tb_cliente WHERE cod_cliente = " . $_SESSION['inputClientes'] ;
                           $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores dos clientes do banco de dados");
@@ -207,7 +206,7 @@ if(isset($_POST['form'])){
                       <td><?php echo date('d/m/y H:i:s');?></td>
                       <td>
                         <?php                        
-                        echo $tpPedido;
+                        echo isset($_SESSION['tpPedido']) ? $_SESSION['tpPedido'] : '';
                         ?>
                       </td>
                     </tr>
@@ -267,7 +266,7 @@ if(isset($_POST['form'])){
 
                         echo "<option value='".$id."'>".$id." - ".$telefone." / ".$endereco."</option>";
                       }
-                      mysqli_close($link);                      
+                      mysqli_close($link);                 
                       ?>
                     </select>
                   </div>                  
