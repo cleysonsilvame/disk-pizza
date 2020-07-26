@@ -28,7 +28,7 @@ if ($acao == 'verificarCEP') {
 
   echo $telefone."<br>".$cep."<br>".$numero."<br>".$endereco."<br>".$cidadeEstado;
 
-  $sql = "INSERT INTO tb_cliente (telefone_cliente, cep_cliente, num_end_cliente, endereco_cliente)values('$telefone', '$cep', '$numero', '$endereco "."$cidadeEstado')";
+  $sql = "INSERT INTO tb_cliente (telefone_cliente, cep_cliente, num_end_cliente, endereco_cliente, bairro_cid_est_cliente )values('$telefone', '$cep', '$numero', '$endereco' , '$cidadeEstado')";
 
   if (!mysqli_query($link, $sql)) {
     die("Erro ao inserir as informações do formulário na tabela de clientes: " . mysqli_error($link));

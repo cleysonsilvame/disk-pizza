@@ -42,6 +42,7 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Número cliente</th>
+                <th scope="col">CEP cliente</th>
                 <th scope="col">Endereço cliente</th>
                 <th scope="col">Ação</th>
               </tr>
@@ -56,12 +57,16 @@
             while ($registro = mysqli_fetch_array($resultado)) {
               $id = $registro['cod_cliente'];
               $telefone = $registro['telefone_cliente'];
+              $cep = $registro['cep_cliente'];
               $endereco = $registro['endereco_cliente'];
+              $numero = $registro['num_end_cliente'];
+              $bce = $registro['bairro_cid_est_cliente'];
               echo "
               <tr>
                 <th scope='row'>" . $id . "</th>
                 <td>" . $telefone . "</td>
-                <td>" . $endereco. "</td>
+                <td>" . $cep. "</td>
+                <td>" . $endereco.", ".$numero." - ".$bce."</td>
                 <td>
                   <a href='/views/update-cliente.php?inputCodigo=$id' class='btn text-dark'><i class='fas fa-edit'></i></a>
                   <a href='/views/delete-cliente.php?inputCodigo=$id' class='btn text-dark'><i class='fas fa-trash'></i></a>
