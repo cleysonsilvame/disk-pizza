@@ -57,7 +57,8 @@
                     c.telefone_cliente,
                     c.endereco_cliente
                     FROM tb_pedido AS pe
-                    LEFT JOIN tb_cliente AS c ON pe.cod_cliente = c.cod_cliente";
+                    LEFT JOIN tb_cliente AS c ON pe.cod_cliente = c.cod_cliente
+                    ORDER BY pe.datahora_pedido";
 
             $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores do banco de dados");
 
