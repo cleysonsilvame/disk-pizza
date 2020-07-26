@@ -2,22 +2,18 @@
 session_start();
 date_default_timezone_set('america/sao_paulo');
 include_once 'conexao.php';
-
 $acao = "";
 
 if (empty($_SESSION['listProdutos'])) {
   $_SESSION['listProdutos'] = [];
 }
-if (empty($_SESSION['idCliente'])) {
-  $_SESSION['idCliente'] = "";
-}
-if (empty($_SESSION['telefone'])) {
-  $_SESSION['telefone'] = "";
-}
-if (empty($_SESSION['endereco'])) {
-  $_SESSION['endereco'] = "";
+if (empty($_SESSION['Cliente'])) {
+  $_SESSION['Cliente'] = [];
 }
 
+if (empty($_SESSION['tpPedido'])) {
+  $_SESSION['tpPedido'] = '';
+}
 
 if(isset($_POST['form'])){
   switch ($_POST['form']) {
@@ -77,10 +73,17 @@ if(isset($_POST['form'])){
       </header>
       <div class="main-content p-3 w-100">
         <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
-          <form class="d-flex flex-row w-100 " action="cadastrar-pedido.php?acao=confirmar">
-            <button type="submit" class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100">Cadastrar Pedido</button>
+          <form class="d-flex flex-row w-100 " method="POST" action="insert-pedido.php">
+            <button type="submit" class="btn panel col-12 panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100">Cadastrar Pedido</button>
           </form>
         </div>
+            <div class="container d-flex  align-items-center justify-content-center  w-50">
+              <?php echo isset($_GET['error']) ? " 
+              <div class='text-center mt-2 badge badge-pill badge-secondary text-wrap'>
+                   ".$_GET['error']."
+              </div>": '';
+              ?>
+            </div>
         <div class="container-fluid mt-3">
           <div class='row'>
             <div class='col-6 p-0 pr-2'>
@@ -168,26 +171,31 @@ if(isset($_POST['form'])){
                       if($acao == 'c') {
                         if ($_POST['inputClientes'] == 0) {
                           $_SESSION['tpPedido'] = 'Balcão';
-                          $_SESSION['idCliente'] = '';
-                          $_SESSION['telefone'] = '';
-                          $_SESSION['endereco'] = '';
+                          $_SESSION['Cliente'] = [];
                         }else{
                           $_SESSION['tpPedido'] = 'Delivery';
-                          $_SESSION['inputClientes'] = $_POST['inputClientes'];  
-                          $sql = "SELECT * FROM tb_cliente WHERE cod_cliente = " . $_SESSION['inputClientes'] ;
+                          $_SESSION['Cliente'][0] = $_POST['inputClientes'];  
+                          $sql = "SELECT * FROM tb_cliente WHERE cod_cliente = " . $_SESSION['Cliente'][0];
                           $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores dos clientes do banco de dados");
 
                           while ($registro = mysqli_fetch_array($resultado)) {
-                          $_SESSION['idCliente'] = $registro['cod_cliente'];
-                          $_SESSION['telefone'] = $registro['telefone_cliente'];
-                          $_SESSION['endereco'] = $registro['endereco_cliente'];                        
+                          $_SESSION['Cliente'][0] = $registro['cod_cliente'];
+                          $_SESSION['Cliente'][1] = $registro['telefone_cliente'];
+                          $_SESSION['Cliente'][2] = $registro['endereco_cliente'];                        
                           }
                         }
                         
                       }
-                      echo "<th scope='row'>".$_SESSION['idCliente']."</th>
-                            <td>".$_SESSION['telefone']."</td>
-                            <td>".$_SESSION['endereco']."</td>";                                  
+
+                      if (sizeof($_SESSION['Cliente']) == 0 ) {
+                        echo "<th scope='row'></th>
+                            <td></td>
+                            <td></td>";
+                      }else{
+                        echo "<th scope='row'>".$_SESSION['Cliente'][0]."</th>
+                        <td>".$_SESSION['Cliente'][1]."</td>
+                        <td>".$_SESSION['Cliente'][2]."</td>";  
+                      }
                       ?>
                     </tr>
                   </tbody>
@@ -203,7 +211,7 @@ if(isset($_POST['form'])){
                   </thead>
                   <tbody>
                     <tr>
-                      <td><?php echo date('d/m/y H:i:s');?></td>
+                      <td><?php echo date('d/m/y H:i:s'); $_SESSION['dhPedido'] = date('d/m/y H:i:s');?></td>
                       <td>
                         <?php                        
                         echo isset($_SESSION['tpPedido']) ? $_SESSION['tpPedido'] : '';
