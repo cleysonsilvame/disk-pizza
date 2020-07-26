@@ -97,14 +97,14 @@ if ($acao == 'verificarCEP') {
               <div class="form-row">
                 <div class="form-group col-md-5">
                   <label for="inputEndereco">Endereço</label>
-                  <input type="text" class="form-control" id="inputEndereco" name="inputEndereco" value="<?php echo isset($_SESSION['cep'][1])? $_SESSION['cep'][1] : "";?>" placeholder="Av. Fulando de tal, 999 - Bairro - Cidade/Sigla" maxlength="80" required>
+                  <input type="text" class="form-control" id="inputEndereco" name="inputEndereco" value="<?php echo isset($_SESSION['cep'][1])? $_SESSION['cep'][1] : "";?>" placeholder=" Bairro - Cidade/Sigla" maxlength="80" required>
                 </div>
                 <div class="form-group col-md-1">
                   <label for="inputNumero">Número</label>
                   <input type="text" class="form-control" id="inputNumero" name="inputNumero" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="inputCidadeEstado">Cidade / Estado</label>
+                  <label for="inputCidadeEstado">Bairro / Cidade / Estado</label>
                   <input type="text" class="form-control" id="inputCidadeEstado" name="inputCidadeEstado" value="<?php                   
                   $bairro = isset($_SESSION['cep'][2]) ? $_SESSION['cep'][2] : "";
                   $cidade =  isset($_SESSION['cep'][3]) ? $_SESSION['cep'][3] : "";

@@ -66,7 +66,7 @@ else{
               </div>
               <div class='form-group col-md-4'>
                 <label for='inputValor'>Valor</label>
-                <input type='number' class='form-control' id='inputValor' name='inputValor' placeholder='R$ 99999,99' min='0' max='9999999' required>
+                <input type='number' class='form-control' id='inputValor' name='inputValor' placeholder='R$ 99999,99' min='0' max='9999999' step='any' required>
               </div>
               <div class='form-group col-md-4'>
                 <label for='inputTipo'>Tipo</label>
