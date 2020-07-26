@@ -163,7 +163,7 @@
                         <a a href='#' class='btn text-dark w-100'><i class='fas fa-edit'></i></a>
                       </div>
                       <div class='col-6 pr-0'>
-                        <a href='#' class='btn text-dark w-100'><i class='fas fa-trash'></i></a>
+                        <a href='delete-pedido.php?idPedido=".$codPedido."' class='btn text-dark w-100'><i class='fas fa-trash'></i></a>
                       </div>
                   </div>
                   <hr>";
