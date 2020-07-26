@@ -66,7 +66,7 @@
 
             while ($registro = mysqli_fetch_array($resultado)) {
               $codPedido = $registro['cod_pedido'];
-              $dhPedido = $registro['datahora_pedido'];
+              $dhPedido = DateTime::createFromFormat('Y-m-d H:i:s', $registro['datahora_pedido']);
               $hsPedido = $registro['horasaida_pedido'];
               $tpPedido = $registro['tipo_pedido'];
               $codCliente = $registro['cod_cliente'];
@@ -155,7 +155,7 @@
                           </thead>
                           <tbody>
                             <tr>
-                              <td>" . $dhPedido . "</td>
+                              <td>" . date_format($dhPedido, 'd/m/Y H:i:s') . "</td>
                               <td>" . $hsPedido . "</td>
                               <td>" . $tpPedido . "</td>
                             </tr>
@@ -166,7 +166,7 @@
                   </div>           
                   <div class='panel-row d-flex flex-row align-items-center mb-4 justify-content-center'>
                     <div class='col-6 pl-0'>
-                        <a a href='#' class='btn text-dark w-100'><i class='fas fa-edit'></i></a>
+                        <a a href='alterar-pedido.php?idPedido=".$codPedido."' class='btn text-dark w-100'><i class='fas fa-edit'></i></a>
                       </div>
                       <div class='col-6 pr-0'>
                         <a href='delete-pedido.php?idPedido=".$codPedido."' class='btn text-dark w-100'><i class='fas fa-trash'></i></a>

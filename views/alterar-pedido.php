@@ -2,6 +2,8 @@
 session_start();
 date_default_timezone_set('america/sao_paulo');
 include_once 'conexao.php';
+
+
 $acao = "";
 
 if (empty($_SESSION['listProdutos'])) {
@@ -211,7 +213,7 @@ if(isset($_POST['form'])){
                   </thead>
                   <tbody>
                     <tr>
-                      <td><?php echo date('d/m/y H:i:s'); $_SESSION['dhPedido'] = date('Y/m/d H:i:s');?></td>
+                      <td><?php echo date('d/m/y H:i:s'); $_SESSION['dhPedido'] = date('d/m/y H:i:s');?></td>
                       <td>
                         <?php                        
                         echo isset($_SESSION['tpPedido']) ? $_SESSION['tpPedido'] : '';

@@ -279,4 +279,15 @@ function InserirCliente($clientes)
 	}
 	mysqli_close($link);
 }
+
+
+session_start();
+
+
+$_SESSION['test'] = date('Y-m-d H:i:s');
+
+$data_brasil = DateTime::createFromFormat('Y-m-d H:i:s', $_SESSION['test']);
+
+echo date_format($data_brasil, 'd/m/Y H:i:s');
+
 ?>
