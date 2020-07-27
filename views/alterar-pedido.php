@@ -3,6 +3,45 @@ session_start();
 date_default_timezone_set('america/sao_paulo');
 include_once 'conexao.php';
 
+$id = isset($_GET['idPedido']) ? $_GET['idPedido'] : "";
+
+if($id != ""){
+  $sql = "SELECT * FROM tb_pedido AS pe LEFT JOIN tb_cliente AS c ON pe.cod_cliente = c.cod_cliente WHERE pe.cod_pedido = '".$id."'";
+
+  $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores do banco de dados");
+
+  while ($registro = mysqli_fetch_array($resultado)) {
+    $_SESSION['Cliente'] = [];
+    $codPedido = $registro['cod_pedido'];
+    $dhPedido = DateTime::createFromFormat('Y-m-d H:i:s', $registro['datahora_pedido']);
+    $hsPedido = $registro['horasaida_pedido'];
+    $tpPedido = $registro['tipo_pedido'];
+    $codCliente = $registro['cod_cliente'];
+    $telCliente = $registro['telefone_cliente'];
+    $endCliente = isset($registro['endereco_cliente'])? $registro['endereco_cliente'].", " : "";
+    $numCliente = $registro['num_end_cliente'];
+    $cepCliente = $registro['cep_cliente'];
+
+    $sqlP =  "SELECT * 
+              FROM tb_item_pedido AS ip
+              INNER JOIN tb_produto AS p ON ip.cod_produto = p.cod_produto
+              WHERE ip.cod_pedido = " . $codPedido;
+
+    $resultadoP = mysqli_query($link, $sqlP) or die("Erro ao retornar os valores do banco de dados");
+    while ($registroP = mysqli_fetch_array($resultadoP)) {
+      $nomeProduto = $registroP['nome_produto'];
+      $tpProduto = $registroP['tipo_produto'];
+      $valorProduto = $registroP['valor_produto'];
+      $quantProduto = $registroP['quant_item_pedido'];
+      $totalPedido = $valorProduto * $quantProduto;
+
+    }
+  }
+}
+
+if(empty($infoPedido)){
+  $infoPedido = ["","","",""];
+}
 
 $acao = "";
 
@@ -71,12 +110,12 @@ if(isset($_POST['form'])){
     </sidebar>
     <main class="d-block h-100 bg-secondary">
       <header class="d-flex flew-row align-items-center justify-content-center bg-danger text-dark">
-        <h1><i class="fas fa-plus-square"></i> Cadastrar Pedido</h1>
+        <h1><i class="fas fa-plus-square"></i> Editar Pedido</h1>
       </header>
       <div class="main-content p-3 w-100">
         <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
           <form class="d-flex flex-row w-100 " method="POST" action="insert-pedido.php">
-            <button type="submit" class="btn panel col-12 panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100">Cadastrar Pedido</button>
+            <button type="submit" class="btn panel col-12 panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100">Editar Pedido</button>
           </form>
         </div>
             <div class="container d-flex  align-items-center justify-content-center  w-50">
@@ -163,41 +202,35 @@ if(isset($_POST['form'])){
                     <tr>
                       <th scope='col'>#</th>
                       <th scope='col'>Telefone Cliente</th>
+                      <th scope='col'>CEP</th>
                       <th scope='col'>Endereço</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>                      
                       <?php
-                      
-                      if($acao == 'c') {
-                        if ($_POST['inputClientes'] == 0) {
-                          $_SESSION['tpPedido'] = 'Balcão';
-                          $_SESSION['Cliente'] = [];
-                        }else{
-                          $_SESSION['tpPedido'] = 'Delivery';
-                          $_SESSION['Cliente'][0] = $_POST['inputClientes'];  
-                          $sql = "SELECT * FROM tb_cliente WHERE cod_cliente = " . $_SESSION['Cliente'][0];
-                          $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores dos clientes do banco de dados");
+                          $sql = "SELECT * FROM tb_pedido AS pe LEFT JOIN tb_cliente AS c ON pe.cod_cliente = c.cod_cliente WHERE pe.cod_pedido = '".$id."' AND c.cod_cliente IS NOT NULL";
+                          
+                          if(mysqli_num_rows(mysqli_query($link, $sql)) !== 0){
+                            $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores dos clientes do banco de dados");
+  
+                            while ($registro = mysqli_fetch_array($resultado)) {
+                            $cliente[] = $registro['cod_cliente'];
+                            $cliente[] = $registro['telefone_cliente'];
+                            $cliente[] = $registro['cep_cliente'];
+                            $cliente[] = $registro['endereco_cliente'].", ".$registro['num_end_cliente']." ". $registro['bairro_cid_est_cliente'];               
+                            }
+                            echo "<th scope='row'>".$cliente[0]."</th>
+                            <td>".$cliente[1]."</td>
+                            <td>".$cliente[2]."</td>
+                            <td>".$cliente[3]."</td>";  
 
-                          while ($registro = mysqli_fetch_array($resultado)) {
-                          $_SESSION['Cliente'][0] = $registro['cod_cliente'];
-                          $_SESSION['Cliente'][1] = $registro['telefone_cliente'];
-                          $_SESSION['Cliente'][2] = $registro['endereco_cliente'];                        
+                          }else{
+                            echo "<th scope='row'></th>
+                                  <td></td>
+                                  <td></td>
+                                  <td></td>";
                           }
-                        }
-                        
-                      }
-
-                      if (sizeof($_SESSION['Cliente']) == 0 ) {
-                        echo "<th scope='row'></th>
-                            <td></td>
-                            <td></td>";
-                      }else{
-                        echo "<th scope='row'>".$_SESSION['Cliente'][0]."</th>
-                        <td>".$_SESSION['Cliente'][1]."</td>
-                        <td>".$_SESSION['Cliente'][2]."</td>";  
-                      }
                       ?>
                     </tr>
                   </tbody>
@@ -208,18 +241,26 @@ if(isset($_POST['form'])){
                   <thead class='thead-dark'>
                     <tr>
                       <th scope='col'>Data/Hora do Pedido</th>
-                      <th scope='col'>Tipo do Pedido</th>
+                      <th scope='col'>Tipo</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td><?php echo date('d/m/y H:i:s'); $_SESSION['dhPedido'] = date('d/m/y H:i:s');?></td>
-                      <td>
-                        <?php                        
-                        echo isset($_SESSION['tpPedido']) ? $_SESSION['tpPedido'] : '';
-                        ?>
-                      </td>
-                    </tr>
+                      <?php
+                      $sql = "SELECT * FROM tb_pedido WHERE cod_pedido = '".$id."'";
+
+
+                      $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores do pedido do banco de dados");
+  
+                      while ($registro = mysqli_fetch_array($resultado)) {
+                      $infoPedido[] = $registro['cod_pedido'];
+                      $infoPedido[] = DateTime::createFromFormat('Y-m-d H:i:s', $registro['datahora_pedido']);              
+                      $infoPedido[] = $registro['tipo_pedido'];               
+                      }
+                      echo "<td scope='row'>".$infoPedido[1]."</td>
+                      <td>".$infoPedido[2]."</td>";                     
+                      
+                      ?>
                   </tbody>
                 </table>
               </div>
@@ -229,7 +270,7 @@ if(isset($_POST['form'])){
           <div class="row">
             <div class="col-md-6">
               <form method="POST" action="cadastrar-pedido.php">
-                <div class="form-row justify-content-end">
+                <div class="form-row justify-content-center">
                   <div class="form-group col-md-12">
                     <label for="inputProdutos">Produtos</label>
                     <select class="custom-select" name="inputProdutos" id="inputProdutos" size="10" required>
@@ -256,33 +297,6 @@ if(isset($_POST['form'])){
                   <input type="hidden" name="form" value="p">
                   <input type="submit" class="btn text-dark mr-2" value="Inserir Produto"></input>
                 </div>
-              </form>
-            </div>
-            <div class="col-md-6">
-              <form method="POST" action="cadastrar-pedido.php">
-                <div class="form-row">
-                  <div class="form-group col-md-12">
-                    <label for="inputClientes">Clientes</label>
-                    <select class="custom-select" name="inputClientes" id="inputClientes" size="10" required>
-                      <?php
-                      echo "<option value='0'>Selecione um cliente ou clique aqui para balcão...</option>";
-                      $sql = "SELECT * FROM tb_cliente";
-                      $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores do banco de dados");
-
-                      while ($registro = mysqli_fetch_array($resultado)) {
-                        $id = $registro['cod_cliente'];
-                        $telefone = $registro['telefone_cliente'];
-                        $endereco = $registro['endereco_cliente'];
-
-                        echo "<option value='".$id."'>".$id." - ".$telefone." / ".$endereco."</option>";
-                      }
-                      mysqli_close($link);                 
-                      ?>
-                    </select>
-                  </div>                  
-                </div>
-                <input type="hidden" name="form" value="c">
-                <input type="submit" class="btn text-dark ml-1" value="Inserir opção"></input>
               </form>
             </div>
           </div>
