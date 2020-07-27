@@ -35,17 +35,12 @@
     </sidebar>
     <main class="d-block h-100 bg-secondary">
       <header class="d-flex flew-row align-items-center justify-content-center bg-danger text-dark">
-        <h1><i class="fas fa-utensils"></i> Menu pedidos</h1>
+        <h1><i class="fas fa-utensils"></i> Pedidos Realizados</h1>
       </header>
       <div class="main-content p-3 w-100">
         <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
-          <a class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mr-2 mt-1 w-100"
-            href="cadastrar-pedido.php">Novo Pedido</a>
-          <a class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 ml-2 mt-1 w-100"
-            href="pedidos-realizados.php">Pedidos Realizados</a>
         </div>
           <div class="container-fluid mt-3">
-            <h2 class="text-center display-4">Pedidos Ativos</h2>
             <?php
             include_once 'conexao.php';
             $sql = "SELECT 
@@ -60,7 +55,7 @@
                     c.cep_cliente
                     FROM tb_pedido AS pe
                     LEFT JOIN tb_cliente AS c ON pe.cod_cliente = c.cod_cliente
-                    WHERE pe.horachegada_pedido IS NULL
+                    WHERE pe.horachegada_pedido IS NOT NULL
                     ORDER BY pe.datahora_pedido";
 
             $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores do banco de dados");
