@@ -60,6 +60,7 @@
                     c.cep_cliente
                     FROM tb_pedido AS pe
                     LEFT JOIN tb_cliente AS c ON pe.cod_cliente = c.cod_cliente
+                    WHERE pe.horachegada_pedido IS NULL
                     ORDER BY pe.datahora_pedido";
 
             $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores do banco de dados");
@@ -165,11 +166,17 @@
                     </div> 
                   </div>           
                   <div class='panel-row d-flex flex-row align-items-center mb-4 justify-content-center'>
-                    <div class='col-6 pl-0'>
-                        <a a href='alterar-pedido.php?idPedido=".$codPedido."' class='btn text-dark w-100'><i class='fas fa-edit'></i></a>
+                    <div class='col-4'>
+                        <a title='Alterar Pedido' href='alterar-pedido.php?idPedido=".$codPedido."' class='btn text-dark w-100'><i class='fas fa-edit'></i></a>
                       </div>
-                      <div class='col-6 pr-0'>
-                        <a href='delete-pedido.php?idPedido=".$codPedido."' class='btn text-dark w-100'><i class='fas fa-trash'></i></a>
+                      <div class='col-4'>
+                        <a title='Excluir Pedido Pedido' href='delete-pedido.php?idPedido=".$codPedido."' class='btn text-dark w-100'><i class='fas fa-trash'></i></a>
+                      </div>
+                      <div class='col-2'>
+                        <a title='Definir Hora de Saída do Pedido' href='hora-saida-pedido.php?idPedido=".$codPedido."' class='btn text-dark w-100'><i class='fas fa-sign-out-alt'></i></a>
+                      </div>
+                      <div class='col-2'>
+                        <a title='Finalizar Pedido' href='finalizar-pedido.php?idPedido=".$codPedido."' class='btn text-dark w-100'><i class='fas fa-check-square'></i></a>
                       </div>
                   </div>
                   <hr>";
