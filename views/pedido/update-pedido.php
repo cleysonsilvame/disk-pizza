@@ -15,18 +15,27 @@ $codPedido = $_SESSION['idPedido'];
 $tamanhoList = sizeof ($_SESSION['listProdutosEdit']);
 $contador = 0;
 
-while ($contador < $tamanhoList ) {
-    $sql = "UPDATE tb_item_pedido SET quant_item_pedido = '".$_SESSION['listProdutosEdit'][$contador][0]."', cod_produto = '".$_SESSION['listProdutosEdit'][$contador][4]."' WHERE cod_pedido = '$codPedido'";
+echo sizeof ($_SESSION['listProdutosEdit']);
 
-    if (!mysqli_query($link, $sql)) {
-        die("Erro ao alterar o registro da tabela tb_item_pedido<br>" . mysqli_error($link));
-    }else{
-        unset($_SESSION['listProdutosEdit']);
-        unset($_SESSION['idPedido']);
-        $_SESSION['msg_successes'] = "Pedido alterado com sucesso!";
-        $contador++;
+//delete dos produtos atuais da lista
+$sqlDELETE = "DELETE FROM tb_item_pedido WHERE cod_pedido = '" . $codPedido . "'";
+
+if (!mysqli_query($link, $sqlDELETE)) {
+    die("Erro ao excluir os registros de produtos do pedido<br>" . mysqli_error($link));
+} else {
+    while ($contador < $tamanhoList ) {
+        $sql = "INSERT INTO tb_item_pedido (cod_item_pedido, quant_item_pedido, cod_produto, cod_pedido) values (0, " . $_SESSION['listProdutosEdit'][$contador][4] . ", " . $_SESSION['listProdutosEdit'][$contador][0] . ", " . $codPedido . ");";
+    
+        if (!mysqli_query($link, $sql)) {
+            die("Erro ao inserir os novos produtos neste pedido<br>" . mysqli_error($link));
+        }else{            
+            $contador++;
+            $_SESSION['msg_successes'] = "Pedido alterado com sucesso!";
+        }
     }
 }
+unset($_SESSION['listProdutosEdit']);
+unset($_SESSION['idPedido']);
 mysqli_close($link);
 header("Location:menu-pedidos.php");
 ?>

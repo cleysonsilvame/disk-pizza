@@ -21,8 +21,8 @@ if ($acao == 1) {
     while ($registro = mysqli_fetch_array($resultado)) {
         $produtos = array(
             $registro['cod_produto'],
-            $registro['tipo_produto'],
             $registro['nome_produto'],
+            $registro['tipo_produto'],
             $registro['valor_produto'],
             $quantProduto = $registro['quant_item_pedido'],
             $registro['valor_produto'] * $registro['quant_item_pedido']
@@ -107,7 +107,7 @@ if (isset($_POST['form'])) {
                             <table class='table table-striped'>
                                 <thead class='thead-dark'>
                                     <tr>
-                                        <th scope='col'>#</th>
+                                        <th scope='col'><?php echo $_SESSION['idPedido']; ?></th>
                                         <th scope='col'>Nome Produto</th>
                                         <th scope='col'>Tipo</th>
                                         <th scope='col'>Valor</th>
