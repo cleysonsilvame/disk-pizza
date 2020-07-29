@@ -1,66 +1,44 @@
 <?php
 session_start();
 date_default_timezone_set('america/sao_paulo');
-include_once $_SERVER['DOCUMENT_ROOT'].'/config/conexao.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/config/conexao.php';
 
-$id = isset($_GET['idPedido']) ? $_GET['idPedido'] : "";
+$codPedido = isset($_GET['idPedido']) ? $_GET['idPedido'] : "";
+if($codPedido !== ""){
+    $_SESSION['idPedido'] = $codPedido;
+}
 
-if ($id != "") {
-    $sql = "SELECT * FROM tb_pedido AS pe LEFT JOIN tb_cliente AS c ON pe.cod_cliente = c.cod_cliente WHERE pe.cod_pedido = '" . $id . "'";
+$acao = isset($_GET['idPedido']);
+
+if ($acao == 1) {
+    $_SESSION['listProdutosEdit'] = [];
+
+    $sql =  "SELECT * FROM tb_item_pedido AS ip
+    INNER JOIN tb_produto AS p ON ip.cod_produto = p.cod_produto
+    WHERE ip.cod_pedido = " . $codPedido;
 
     $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores do banco de dados");
-
     while ($registro = mysqli_fetch_array($resultado)) {
-        $_SESSION['Cliente'] = [];
-        $codPedido = $registro['cod_pedido'];
-        $dhPedido = DateTime::createFromFormat('Y-m-d H:i:s', $registro['datahora_pedido']);
-        $hsPedido = $registro['horasaida_pedido'];
-        $tpPedido = $registro['tipo_pedido'];
-        $codCliente = $registro['cod_cliente'];
-        $telCliente = $registro['telefone_cliente'];
-        $endCliente = isset($registro['endereco_cliente']) ? $registro['endereco_cliente'] . ", " : "";
-        $numCliente = $registro['num_end_cliente'];
-        $cepCliente = $registro['cep_cliente'];
-
-        $sqlP =  "SELECT * 
-              FROM tb_item_pedido AS ip
-              INNER JOIN tb_produto AS p ON ip.cod_produto = p.cod_produto
-              WHERE ip.cod_pedido = " . $codPedido;
-
-        $resultadoP = mysqli_query($link, $sqlP) or die("Erro ao retornar os valores do banco de dados");
-        while ($registroP = mysqli_fetch_array($resultadoP)) {
-            $nomeProduto = $registroP['nome_produto'];
-            $tpProduto = $registroP['tipo_produto'];
-            $valorProduto = $registroP['valor_produto'];
-            $quantProduto = $registroP['quant_item_pedido'];
-            $totalPedido = $valorProduto * $quantProduto;
-        }
+        $produtos = array(
+            $registro['cod_produto'],
+            $registro['tipo_produto'],
+            $registro['nome_produto'],
+            $registro['valor_produto'],
+            $quantProduto = $registro['quant_item_pedido'],
+            $registro['valor_produto'] * $registro['quant_item_pedido']
+        );
     }
+    $_SESSION['listProdutosEdit'][] = $produtos;
 }
 
-if (empty($infoPedido)) {
-    $infoPedido = ["", "", "", ""];
+
+if (empty($_SESSION['listProdutosEdit'])) {
+    $_SESSION['listProdutosEdit'] = [];
 }
 
-$acao = "";
-
-if (empty($_SESSION['listProdutos'])) {
-    $_SESSION['listProdutos'] = [];
-}
-if (empty($_SESSION['Cliente'])) {
-    $_SESSION['Cliente'] = [];
-}
-
-if (empty($_SESSION['tpPedido'])) {
-    $_SESSION['tpPedido'] = '';
-}
 
 if (isset($_POST['form'])) {
     switch ($_POST['form']) {
-        case "c":
-            $acao = "c";
-            break;
-
         case "p":
             $acao = "p";
             break;
@@ -108,11 +86,11 @@ if (isset($_POST['form'])) {
         </sidebar>
         <main class="d-block h-100 bg-secondary">
             <header class="d-flex flew-row align-items-center justify-content-center bg-danger text-dark">
-                <h1><i class="fas fa-plus-square"></i> Editar Pedido</h1>
+                <h1><i class="fas fa-edit"></i> Editar Pedido</h1>
             </header>
             <div class="main-content p-3 w-100">
                 <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
-                    <form class="d-flex flex-row w-100 " method="POST" action="insert-pedido.php">
+                    <form class="d-flex flex-row w-100 " method="POST" action="update-pedido.php">
                         <button type="submit" class="btn panel col-12 panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100">Editar Pedido</button>
                     </form>
                 </div>
@@ -142,7 +120,8 @@ if (isset($_POST['form'])) {
                                     $contador = 0;
                                     $sumTotal = 0;
 
-                                    if ($acao == 'p') {
+                                    if ($acao === 'p') {
+                                        isset($_POST['inputProdutos']) ? $_POST['inputProdutos'] : $_POST['inputProdutos'] = "";
 
                                         $produtos = array();
                                         $sql = "SELECT * FROM tb_produto WHERE cod_produto = " . $_POST['inputProdutos'];
@@ -158,26 +137,26 @@ if (isset($_POST['form'])) {
                                                 $registro['valor_produto'] * $_POST['inputQuant']
                                             );
                                         }
-                                        $_SESSION['listProdutos'][] = $produtos;
+                                        $_SESSION['listProdutosEdit'][] = $produtos;
                                     }
 
                                     if (isset($_GET['inputPedido'])) {
-                                        unset($_SESSION['listProdutos'][$_GET['inputPedido']]);
-                                        array_splice($_SESSION['listProdutos'], sizeof($_SESSION['listProdutos']));
+                                        unset($_SESSION['listProdutosEdit'][$_GET['inputPedido']]);
+                                        array_splice($_SESSION['listProdutosEdit'], sizeof($_SESSION['listProdutosEdit']));
                                     }
 
-                                    while ($contador < sizeof($_SESSION['listProdutos'])) {
+                                    while ($contador < sizeof($_SESSION['listProdutosEdit'])) {
                                         echo "<tr>
                               <td>
-                                <a href='/views/cadastrar-pedido.php?inputPedido=" . $contador . "' class='btn text-dark p-0 m-0'><i class='fas fa-trash '></i></a>
+                                <a href='/views/pedido/alterar-pedido.php?inputPedido=" . $contador . "' class='btn text-dark p-0 m-0'><i class='fas fa-trash '></i></a>
                               </td> 
-                              <td>" . $_SESSION['listProdutos'][$contador][1] . "</td>
-                              <td>" . $_SESSION['listProdutos'][$contador][2] . "</td>
-                              <td>R$ " . number_format($_SESSION['listProdutos'][$contador][3], 2, ',', '.') . "</td>
-                              <td>" . $_SESSION['listProdutos'][$contador][4] . "</td>
-                              <td>R$ " . number_format($_SESSION['listProdutos'][$contador][5], 2, ',', '.') . "</td>
+                              <td>" . $_SESSION['listProdutosEdit'][$contador][1] . "</td>
+                              <td>" . $_SESSION['listProdutosEdit'][$contador][2] . "</td>
+                              <td>R$ " . number_format($_SESSION['listProdutosEdit'][$contador][3], 2, ',', '.') . "</td>
+                              <td>" . $_SESSION['listProdutosEdit'][$contador][4] . "</td>
+                              <td>R$ " . number_format($_SESSION['listProdutosEdit'][$contador][5], 2, ',', '.') . "</td>
                             </tr>";
-                                        $sumTotal += $_SESSION['listProdutos'][$contador][5];
+                                        $sumTotal += $_SESSION['listProdutosEdit'][$contador][5];
                                         $contador++;
                                     }
 
@@ -206,7 +185,7 @@ if (isset($_POST['form'])) {
                                     <tbody>
                                         <tr>
                                             <?php
-                                            $sql = "SELECT * FROM tb_pedido AS pe LEFT JOIN tb_cliente AS c ON pe.cod_cliente = c.cod_cliente WHERE pe.cod_pedido = '" . $id . "' AND c.cod_cliente IS NOT NULL";
+                                            $sql = "SELECT * FROM tb_pedido AS pe LEFT JOIN tb_cliente AS c ON pe.cod_cliente = c.cod_cliente WHERE pe.cod_pedido = '" . $_SESSION['idPedido'] . "' AND c.cod_cliente IS NOT NULL";
 
                                             if (mysqli_num_rows(mysqli_query($link, $sql)) !== 0) {
                                                 $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores dos clientes do banco de dados");
@@ -237,25 +216,26 @@ if (isset($_POST['form'])) {
                                     <thead class='thead-dark'>
                                         <tr>
                                             <th scope='col'>Data/Hora do Pedido</th>
+                                            <th scope='col'>Data/Hora de Saída do Pedido</th>
                                             <th scope='col'>Tipo</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <?php
-                                            $sql = "SELECT * FROM tb_pedido WHERE cod_pedido = '" . $id . "'";
+                                            $sql = "SELECT * FROM tb_pedido WHERE cod_pedido = '". $_SESSION['idPedido'] . "'";
 
 
                                             $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores do pedido do banco de dados");
 
                                             while ($registro = mysqli_fetch_array($resultado)) {
-                                                $infoPedido[] = $registro['cod_pedido'];
                                                 $infoPedido[] = DateTime::createFromFormat('Y-m-d H:i:s', $registro['datahora_pedido']);
+                                                $infoPedido[] = $registro['horasaida_pedido'];
                                                 $infoPedido[] = $registro['tipo_pedido'];
                                             }
-                                            echo "<td scope='row'>" . $infoPedido[1] . "</td>
-                      <td>" . $infoPedido[2] . "</td>";
-
+                                            echo "<td scope='row'>" . date_format($infoPedido[0], 'd/m/Y H:i:s') . "</td>
+                                                <td scope='row'>" . $infoPedido[1] . "</td>
+                                                <td>" . $infoPedido[2] . "</td>";
                                             ?>
                                     </tbody>
                                 </table>
@@ -265,7 +245,7 @@ if (isset($_POST['form'])) {
                     <hr>
                     <div class="row">
                         <div class="col-md-6">
-                            <form method="POST" action="cadastrar-pedido.php">
+                            <form method="POST" action="alterar-pedido.php">
                                 <div class="form-row justify-content-center">
                                     <div class="form-group col-md-12">
                                         <label for="inputProdutos">Produtos</label>
@@ -276,12 +256,12 @@ if (isset($_POST['form'])) {
                                             $resultado = mysqli_query($link, $sql) or die("Erro ao retornar os valores do banco de dados");
 
                                             while ($registro = mysqli_fetch_array($resultado)) {
-                                                $id = $registro['cod_produto'];
+                                                $codProduto = $registro['cod_produto'];
                                                 $nome = $registro['nome_produto'];
                                                 $valor = $registro['valor_produto'];
                                                 $tipo = $registro['tipo_produto'];
 
-                                                echo "<option value='" . $id . "'>" . $id . " - " . $nome . " / " . $tipo . " / R$" . number_format($valor, 2, ',', '.') . "</option>";
+                                                echo "<option value='" . $codProduto . "'>" . $codProduto . " - " . $nome . " / " . $tipo . " / R$" . number_format($valor, 2, ',', '.') . "</option>";
                                             }
                                             ?>
                                         </select>

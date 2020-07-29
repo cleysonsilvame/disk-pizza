@@ -42,8 +42,9 @@ if (!mysqli_query($link, $sql)) {
         $codPedido = $registro['cod_pedido'];
     }
 
+    $tamanhoList = sizeof($_SESSION['listProdutos']);
     $contador = 0;
-    while ($contador < sizeof($_SESSION['listProdutos'])) {
+    while ($contador < $tamanhoList) {
         $sql = "INSERT INTO tb_item_pedido (cod_item_pedido, quant_item_pedido, cod_produto, cod_pedido) values (0, " . $_SESSION['listProdutos'][$contador][4] . ", " . $_SESSION['listProdutos'][$contador][0] . ", " . $codPedido . ");";
 
         if (!mysqli_query($link, $sql)) {
@@ -66,3 +67,5 @@ if (!mysqli_query($link, $sql)) {
     mysqli_close($link);
     header("Location:menu-pedidos.php");
 }
+
+?>

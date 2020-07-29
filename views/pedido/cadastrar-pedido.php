@@ -127,7 +127,7 @@ if (isset($_POST['form'])) {
                                     while ($contador < sizeof($_SESSION['listProdutos'])) {
                                         echo "<tr>
                               <td>
-                                <a href='/views/cadastrar-pedido.php?inputPedido=" . $contador . "' class='btn text-dark p-0 m-0'><i class='fas fa-trash '></i></a>
+                                <a href='/views/pedido/cadastrar-pedido.php?inputPedido=" . $contador . "' class='btn text-dark p-0 m-0'><i class='fas fa-trash '></i></a>
                               </td> 
                               <td>" . $_SESSION['listProdutos'][$contador][1] . "</td>
                               <td>" . $_SESSION['listProdutos'][$contador][2] . "</td>
