@@ -64,7 +64,7 @@ $msg = isset($_SESSION['msg_successes']) ? $_SESSION['msg_successes'] : "";
                 <h1><i class="fas fa-user-cog"></i> Editar Clientes</h1>
             </header>
             <div class="main-content p-3 w-100">
-            <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
+                <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
                     <?php
                     if ($msg != "") {
                         echo "
