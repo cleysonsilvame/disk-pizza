@@ -86,29 +86,31 @@ if ($acao == 'update') {
                     <div class='panel-row d-flex flex-row align-items-center p-1 justify-content-center w-100'>
                         <form action='update-cliente.php?acao=update' method='POST' class='container'>
                             <div class='form-row mt-5'>
-                                <div class='form-group col-2'>
+                                <div class='form-group col-md-1'>
                                     <label for='inputCodigo'>Código</label>
                                     <input type='number' id='inputCodigo' name='inputCodigo' class='form-control' value='<?php echo $id?>' readonly>
                                 </div>
                             </div>
                             <div class='form-row'>
-                                <div class='form-group col-md-4'>
+                                <div class='form-group col-md-3'>
                                     <label for="inputTelefone">Telefone</label>
                                     <input type="text" class="form-control inputTelefone" id="inputTelefone" name="inputTelefone" placeholder="(DD) 9 9999-9999" required onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="<?php echo $telefone;?>">
                                 </div>
-                                <div class="from-group">
+                                <div class="from-group col-md-2">
                                     <label for="inputCEPverifica">CEP</label>
                                     <input type="text" class="form-control" id="inputCEP" name="inputCEP" value="<?php echo $cep ?>" placeholder="99.999-999" onkeypress="$(this).mask('00.000-000')" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
                                 </div>
-                                <div class='form-group col-md-8'>
+                            </div>
+                            <div class="form-row">
+                                <div class='form-group col-md-5'>
                                     <label for="inputEndereco">Endereço</label>
                                     <input type="text" class="form-control" id="inputEndereco" name="inputEndereco" value="<?php echo $endereco; ?>" placeholder=" Bairro - Cidade/Sigla" maxlength="80" required>
                                 </div>
-                                <div class='form-group col-md-8'>
+                                <div class='form-group col-md-1'>
                                     <label for="inputNumero">Número</label>
                                     <input type="text" class="form-control" id="inputNumero" name="inputNumero" required onkeypress="return event.charCode >= 48 && event.charCode <= 57" value="<?php echo $numero;?>">
                                 </div>
-                                <div class='form-group col-md-8'>
+                                <div class='form-group col-md-6'>
                                     <label for="inputCidadeEstado">Bairro / Cidade / Estado</label>
                                     <input type="text" class="form-control" id="inputCidadeEstado" name="inputCidadeEstado" value="<?php echo $cidadeEstado;?>" placeholder="Cidade/Sigla" maxlength="80" required>
                                 </div>

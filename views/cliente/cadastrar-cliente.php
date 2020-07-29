@@ -76,44 +76,54 @@ if ($acao == 'verificarCEP') {
             </header>
             <div class="main-content">
                 <div class="main-content p-3 w-100">
-                    <form method="POST" action="cadastrar-cliente.php?acao=verificarCEP" class="container">
-                        <div class="form-group col-md-6">
-                            <label for="inputCEPverifica">CEP</label>
-                            <input type="text" class="form-control" id="inputCEPverifica" name="inputCEPverifica" value="<?php echo isset($_SESSION['cep'][0]) ? $_SESSION['cep'][0] : ""; ?>" placeholder="99.999-999" onkeypress="$(this).mask('00.000-000')" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                        </div>
-                        <div class="form-group col-md-3 d-flex flex-row align-items-end">
-                            <button type="submit" class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0">Verificar</button>
+                <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">    
+                <form method="POST" action="cadastrar-cliente.php?acao=verificarCEP" class="container">
+                        <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <label for="inputCEPverifica">CEP</label>
+                                <input type="text" class="form-control" id="inputCEPverifica" name="inputCEPverifica" value="<?php echo isset($_SESSION['cep'][0]) ? $_SESSION['cep'][0] : ""; ?>" placeholder="99.999-999" onkeypress="$(this).mask('00.000-000')" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                            </div>
+                            <div class="form-group col-md-3 d-flex align-items-end">
+                                <button type="submit" class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0">Verificar</button>
+                            </div>
                         </div>
                     </form>
+                </div>
+                <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
                     <form method="POST" action="cadastrar-cliente.php?acao=insert" class="container">
-                        <div class="from-group">
-                            <label for="inputCEPverifica">CEP</label>
-                            <input type="text" class="form-control" id="inputCEP" name="inputCEP" value="<?php echo isset($_SESSION['cep'][0]) ? $_SESSION['cep'][0] : ""; ?>" placeholder="99.999-999" onkeypress="$(this).mask('00.000-000')" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                        <div class="form-row">
+                            <div class="from-group col-md-2">
+                                <label for="inputCEPverifica">CEP</label>
+                                <input type="text" class="form-control" id="inputCEP" name="inputCEP" value="<?php echo isset($_SESSION['cep'][0]) ? $_SESSION['cep'][0] : ""; ?>" placeholder="99.999-999" onkeypress="$(this).mask('00.000-000')" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputTelefone">Telefone</label>
+                                <input type="text" class="form-control inputTelefone" id="inputTelefone" name="inputTelefone" placeholder="(DD) 9 9999-9999" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                            </div>
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="inputTelefone">Telefone</label>
-                            <input type="text" class="form-control inputTelefone" id="inputTelefone" name="inputTelefone" placeholder="(DD) 9 9999-9999" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="inputEndereco">Endereço</label>
-                            <input type="text" class="form-control" id="inputEndereco" name="inputEndereco" value="<?php echo isset($_SESSION['cep'][1]) ? $_SESSION['cep'][1] : ""; ?>" placeholder=" Bairro - Cidade/Sigla" maxlength="80" required>
-                        </div>
-                        <div class="form-group col-md-1">
-                            <label for="inputNumero">Número</label>
-                            <input type="text" class="form-control" id="inputNumero" name="inputNumero" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputCidadeEstado">Bairro / Cidade / Estado</label>
-                            <input type="text" class="form-control" id="inputCidadeEstado" name="inputCidadeEstado" value="<?php
-                                $bairro = isset($_SESSION['cep'][2]) ? $_SESSION['cep'][2] : "";
-                                $cidade =  isset($_SESSION['cep'][3]) ? $_SESSION['cep'][3] : "";
-                                $estado = isset($_SESSION['cep'][4]) ? $_SESSION['cep'][4] : "";
-                                echo $bairro . " " . $cidade . "/" . $estado;
-                                unset($_SESSION['cep']);
-                                ?>" placeholder="Cidade/Sigla" maxlength="80" required>
+                        <div class="form-row">
+                            <div class="form-group col-md-5">
+                                <label for="inputEndereco">Endereço</label>
+                                <input type="text" class="form-control" id="inputEndereco" name="inputEndereco" value="<?php echo isset($_SESSION['cep'][1]) ? $_SESSION['cep'][1] : ""; ?>" placeholder=" Bairro - Cidade/Sigla" maxlength="80" required>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <label for="inputNumero">Número</label>
+                                <input type="text" class="form-control" id="inputNumero" name="inputNumero" required onkeypress="return event.charCode >= 48 && event.charCode <= 57">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputCidadeEstado">Bairro / Cidade / Estado</label>
+                                <input type="text" class="form-control" id="inputCidadeEstado" name="inputCidadeEstado" value="<?php
+                                    $bairro = isset($_SESSION['cep'][2]) ? $_SESSION['cep'][2] : "";
+                                    $cidade =  isset($_SESSION['cep'][3]) ? $_SESSION['cep'][3] : "";
+                                    $estado = isset($_SESSION['cep'][4]) ? $_SESSION['cep'][4] : "";
+                                    echo $bairro . " " . $cidade . "/" . $estado;
+                                    unset($_SESSION['cep']);
+                                    ?>" placeholder="Cidade/Sigla" maxlength="80" required>
+                            </div>
                         </div>
                         <button type="submit" class="btn panel panel-50 d-flex flex-column align-items-center justify-content-center p-2 mt-1 mr-0 w-100">Cadastrar Cliente</button>
                     </form>
+                </div>
                 </div>
             </div>
         </main>
