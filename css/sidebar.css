@@ -1,4 +1,4 @@
-/* .bg-danger{
+.bg-danger{
   background-color: rgb(241, 94, 41) !important;
 }
 .bg-secondary{
@@ -13,7 +13,7 @@
 .nav-pills .nav-link.active:hover {
   background-color: rgb(199, 66, 17) !important;
   font-weight: bold;
-} */
+}
 
 sidebar {
     width: 240px;
