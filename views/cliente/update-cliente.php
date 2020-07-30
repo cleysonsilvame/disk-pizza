@@ -102,7 +102,7 @@ if ($acao == 'update') {
                 </div>
                 <div class="m-0 p-0 flex-fill">
                     <div class="d-flex align-items-center justify-content-center bg-danger text-dark">
-                        <h2><i class="fas fa-user-edit"></i> Editar cliente</h2>
+                        <h3><i class="fas fa-user-edit"></i> Editar cliente</h3>
                     </div>
                 </div>
             </nav>

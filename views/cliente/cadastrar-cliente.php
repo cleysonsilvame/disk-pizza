@@ -99,7 +99,7 @@ if ($acao == 'verificarCEP') {
                 </div>
                 <div class="m-0 p-0 flex-fill">
                     <div class="d-flex align-items-center justify-content-center bg-danger text-dark">
-                        <h2><i class="fas fa-user-plus"></i> Cadastrar Cliente</h2>
+                        <h4><i class="fas fa-user-plus"></i> Cadastrar Cliente</h4>
                     </div>
                 </div>
             </nav>
