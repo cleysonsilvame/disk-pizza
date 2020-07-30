@@ -14,3 +14,7 @@
   background-color: rgb(199, 66, 17) !important;
   font-weight: bold;
 } */
+
+sidebar {
+    width: 240px;
+}

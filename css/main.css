@@ -1,5 +1,5 @@
 main .main-content{
-  height: calc(100% - 70px);
+  height: calc(100% - 51.2px);
   overflow-y: auto;
   background-color: whitesmoke;
 }
