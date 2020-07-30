@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/all.css">
@@ -11,37 +11,101 @@
 </head>
 
 <body>
-    <div class="flex-dashboard d-flex flex-row h-100 w-100">
-        <sidebar class="h-100 bg-dark text-light">
-            <div class="sidebar-title d-flex flex-row justify-content-center align-items-center">
-                <a href="/index.html" class="btn text-light">
-                    <h2><i class="fas fa-pizza-slice fa"></i> Disk-Pizza</h2>
-                </a>
+    <header>
+        <div class="fixed-top w-100">
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="bg-dark p-4">
+                    <h5 class="text-white h4">Collapsed content</h5>
+                    <span class="text-muted">Toggleable via the navbar brand.</span>
+                </div>
             </div>
-            <ul class="nav nav-pills flex-column p-4">
+            <nav class="navbar navbar-dark bg-danger m-0 p-0">
+                <div class="col-3 m-0 bg-dark justify-content-center">
+                    <div class="d-lg-none py-1 text-center">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                    <div class="d-none d-lg-block">
+                        <div class="d-flex justify-content-center">
+                            <a href="/index.html" class="btn text-light justify-content-center p-0">
+                                <h2><i class="fas fa-pizza-slice fa"></i> Disk-Pizza</h2>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9 m-0 p-0">
+                    <div class="w-100 d-flex align-items-center justify-content-center bg-danger text-dark">
+                        <h2><i class="fas fa-door-open"></i> Bem-vindo</h2>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="row">
+        <sidebar class="h-100 col-3 m-0 p-0 bg-dark text-light">
+            <ul class="nav p-0">
                 <li class="nav-item ">
                     <a href="/views/pedido/menu-pedidos.php" class="nav-link text-light"><i class="fas fa-list"></i>
                         Menu de Pedidos</a>
                 </li>
                 <li class="nav-item">
                     <a href="/views/cliente/editar-cliente.php" class="nav-link text-light"><i
-                            class="fas fa-user-cog"></i> Editar Clientes</a>
+                            class="fas fa-user-cog"></i>
+                        Editar Clientes</a>
                 </li>
                 <li class="nav-item">
                     <a href="/views/produto/editar-produto.php" class="nav-link text-light"><i
-                            class="fas fa-utensils"></i> Editar Produtos</a>
+                            class="fas fa-utensils"></i>
+                        Editar Produtos</a>
                 </li>
             </ul>
         </sidebar>
-        <main class="d-block h-100 bg-secondary">
-            <header class="d-flex flew-row align-items-center justify-content-center bg-danger text-dark">
-                <h1><i class="fas fa-door-open"></i> Bem-vindo</h1>
-            </header>
+        <main class="col-9 p-0 m-0 h-100 bg-secondary">
             <div class="main-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error molestias perferendis quam quos!
+                    Assumenda, quos libero hic quia nihil et dignissimos quam labore odio sint. Quo ad aut adipisci
+                    repellat.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error molestias perferendis quam quos!
+                    Assumenda, quos libero hic quia nihil et dignissimos quam labore odio sint. Quo ad aut adipisci
+                    repellat.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error molestias perferendis quam quos!
+                    Assumenda, quos libero hic quia nihil et dignissimos quam labore odio sint. Quo ad aut adipisci
+                    repellat.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error molestias perferendis quam quos!
+                    Assumenda, quos libero hic quia nihil et dignissimos quam labore odio sint. Quo ad aut adipisci
+                    repellat.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error molestias perferendis quam quos!
+                    Assumenda, quos libero hic quia nihil et dignissimos quam labore odio sint. Quo ad aut adipisci
+                    repellat.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error molestias perferendis quam quos!
+                    Assumenda, quos libero hic quia nihil et dignissimos quam labore odio sint. Quo ad aut adipisci
+                    repellat.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error molestias perferendis quam quos!
+                    Assumenda, quos libero hic quia nihil et dignissimos quam labore odio sint. Quo ad aut adipisci
+                    repellat.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error molestias perferendis quam quos!
+                    Assumenda, quos libero hic quia nihil et dignissimos quam labore odio sint. Quo ad aut adipisci
+                    repellat.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error molestias perferendis quam quos!
+                    Assumenda, quos libero hic quia nihil et dignissimos quam labore odio sint. Quo ad aut adipisci
+                    repellat.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error molestias perferendis quam quos!
+                    Assumenda, quos libero hic quia nihil et dignissimos quam labore odio sint. Quo ad aut adipisci
+                    repellat.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error molestias perferendis quam quos!
+                    Assumenda, quos libero hic quia nihil et dignissimos quam labore odio sint. Quo ad aut adipisci
+                    repellat.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error molestias perferendis quam quos!
+                    Assumenda, quos libero hic quia nihil et dignissimos quam labore odio sint. Quo ad aut adipisci
+                    repellat.</p>
             </div>
         </main>
-    </div>
 
+
+    </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

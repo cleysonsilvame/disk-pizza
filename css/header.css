@@ -1,4 +1,12 @@
-
-.flex-dashboard header{
-  height: 70px;
+header{
+    height: 48.4px;
 }
+
+nav.bg-danger, div.bg-danger{
+    background-color: rgb(241, 94, 41) !important;
+}
+
+h2 > i{
+    color: rgb(241, 94, 41);
+    size: 20px;
+  }
