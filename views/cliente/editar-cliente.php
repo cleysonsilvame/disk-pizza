@@ -111,7 +111,7 @@ $msg = isset($_SESSION['msg_successes']) ? $_SESSION['msg_successes'] : "";
         </sidebar>
         <main class="col h-100 p-0 pl-1 bg-dark">
             <div class="main-content p-3">
-            <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
+                <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
                     <?php
                     if ($msg != "") {
                         echo "
@@ -145,7 +145,6 @@ $msg = isset($_SESSION['msg_successes']) ? $_SESSION['msg_successes'] : "";
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             </div>
         </main>
