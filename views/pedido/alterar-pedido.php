@@ -50,44 +50,89 @@ if (isset($_POST['form'])) {
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="../../css/all.css">
     <title>Disk Pizza</title>
 </head>
 
 <body>
-    <div class="flex-dashboard d-flex flex-row h-100 w-100">
-        <sidebar class="h-100 bg-dark text-light">
-            <div class="sidebar-title d-flex flex-row justify-content-center align-items-center">
-                <a href="/index.html" class="btn text-light">
-                    <h2><i class="fas fa-pizza-slice fa"></i> Disk-Pizza</h2>
-                </a>
+    <header>
+        <div class="fixed-top w-100">
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="bg-dark p-4">
+                    <ul class="nav nav-pills flex-column p-0">
+                        <li class="nav-item ">
+                            <a href="/views/pedido/menu-pedidos.php" class="nav-link text-light active"><i class="fas fa-list"></i>
+                                Menu de Pedidos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/views/cliente/editar-cliente.php" class="nav-link text-light"><i
+                                    class="fas fa-user-cog"></i>
+                                Editar Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/views/produto/editar-produto.php" class="nav-link text-light"><i
+                                    class="fas fa-utensils"></i>
+                                Editar Produtos</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <ul class="nav nav-pills flex-column p-4">
-                <li class="nav-item ">
-                    <a href="/views/pedido/menu-pedidos.php" class="nav-link text-light active"><i class="fas fa-list"></i> Menu de
-                        Pedidos</a>
+            <nav class="navbar navbar-dark bg-danger m-0 p-0">
+                <div class="w-25 d-md-none m-0 bg-dark justify-content-center">
+                    <div class="my-2 py-1 text-center">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="w-fix d-none d-md-block m-0 bg-dark justify-content-center">
+                    <div class="mt-2">
+                        <div class="d-flex justify-content-center">
+                            <a href="/index.html" class="btn text-light justify-content-center p-0">
+                                <h3><i class="fas fa-pizza-slice"></i> Disk-Pizza</h3>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-0 p-0 flex-fill">
+                    <div class="d-flex align-items-center justify-content-center bg-danger text-dark">
+                        <h3><i class="fas fa-edit"></i> Editar Pedido</h3>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="row h-100 bg-dark">
+        <sidebar class="h-100 d-none d-md-block m-0 text-light">
+            <ul class="nav nav-pills flex-column p-0 pl-4 pt-4">
+                <li class="nav-item">
+                    <a href="/views/pedido/menu-pedidos.php" class="nav-link text-light active"><i class="fas fa-list"></i>
+                        Menu de Pedidos</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/views/cliente/editar-cliente.php" class="nav-link text-light"><i class="fas fa-user-cog"></i> Editar
-                        Clientes</a>
+                    <a href="/views/cliente/editar-cliente.php" class="nav-link text-light"><i
+                            class="fas fa-user-cog"></i>
+                        Editar Clientes</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/views/produto/editar-produto.php" class="nav-link text-light"><i class="fas fa-utensils"></i> Editar
-                        Produtos</a>
+                    <a href="/views/produto/editar-produto.php" class="nav-link text-light"><i
+                            class="fas fa-utensils"></i>
+                        Editar Produtos</a>
                 </li>
             </ul>
         </sidebar>
-        <main class="d-block h-100 bg-secondary">
-            <header class="d-flex flew-row align-items-center justify-content-center bg-danger text-dark">
-                <h1><i class="fas fa-edit"></i> Editar Pedido</h1>
-            </header>
+        <main class="col h-100 p-0 pl-1 pr-3 bg-dark">
             <div class="main-content p-3 w-100">
                 <div class="panel-row d-flex flex-row align-items-center p-1 justify-content-center">
                     <form class="d-flex flex-row w-100 " method="POST" action="update-pedido.php">
@@ -103,7 +148,7 @@ if (isset($_POST['form'])) {
                 </div>
                 <div class="container-fluid mt-3">
                     <div class='row'>
-                        <div class='col-6 p-0 pr-2'>
+                        <div class='col-12 col-xl-6 p-0 px-2'>
                             <table class='table table-striped'>
                                 <thead class='thead-dark'>
                                     <tr>
@@ -171,7 +216,7 @@ if (isset($_POST['form'])) {
                                 </tbody>
                             </table>
                         </div>
-                        <div class='col-6 pl-4'>
+                        <div class='col-12 col-xl-6 px-4'>
                             <div class='row'>
                                 <table class='table table-sm table-striped'>
                                     <thead class='thead-dark'>
@@ -276,13 +321,19 @@ if (isset($_POST['form'])) {
                             </form>
                         </div>
                     </div>
-                </div>
+                </div>       
+            </div>         
         </main>
     </div>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/a31af2c148.js" crossorigin="anonymous"></script>
 </body>
 

@@ -22,7 +22,7 @@ if (sizeof($_SESSION['listProdutos']) == 0 || $_SESSION['tpPedido'] == '') {
 
 include_once $_SERVER['DOCUMENT_ROOT'] . '/config/conexao.php';
 
-
+print_r($_SESSION['listProdutos']);
 
 if ($_SESSION['tpPedido'] == 'Balcão') {
     $sql = "INSERT INTO tb_pedido (cod_pedido, datahora_pedido, tipo_pedido) values (0, '" . $_SESSION['dhPedido'] . "', '" . $_SESSION['tpPedido'] . "');";
@@ -55,15 +55,16 @@ if (!mysqli_query($link, $sql)) {
                 die("Erro ao excluir o registro da tabela pedido depois do erro encontado no insert tabela item_pedido<br>" . mysqli_error($link));
             } else {
                 echo "<script>alert('Dados deletados tabela pedido com sucesso depois do erro no insert da tabela pedido.');</script>";
+                unset($_SESSION['listProdutos'], $_SESSION['Cliente'], $_SESSION['tpPedido'], $_SESSION['dhPedido']);
             }
             die("Erro ao inserir as informações do formulário na tabela de item_pedidos: <br>" . mysqli_error($link));
             mysqli_close($link);
         } else {
-            unset($_SESSION['listProdutos'], $_SESSION['Cliente'], $_SESSION['tpPedido'], $_SESSION['dhPedido']);
             $_SESSION['msg_successes'] = "Pedido realizado com sucesso!";
             $contador++;
         }
     }
+    unset($_SESSION['listProdutos'], $_SESSION['Cliente'], $_SESSION['tpPedido'], $_SESSION['dhPedido']);
     mysqli_close($link);
     header("Location:menu-pedidos.php");
 }
