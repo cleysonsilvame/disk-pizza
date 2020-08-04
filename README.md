@@ -3,7 +3,8 @@
 
  Sou aprendiz! Aceito dicas e conselhos sobre meu desenvolvimento :relaxed:
  
- ## Getting started
+ ## Deploy in Heroku with ClearDB
+ 
 
 
 <br><br><br>
