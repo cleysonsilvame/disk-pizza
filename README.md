@@ -12,9 +12,15 @@
 </p>
 
 <p align="center">
- <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&color=49AA26&labelColor=000000" alt="PRs welcome!" />
+  <a href="https://github.com/cleysonsilvame/disk-pizza/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/cleysonsilvame/disk-pizza.svg">
+  </a>
 
-  <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=49AA26&labelColor=000000">
+  <a href="https://github.com/cleysonsilvame/disk-pizza/issues">
+    <img alt="Repository issues" src="https://img.shields.io/github/last-commit/cleysonsilvame/disk-pizza.svg">
+  </a>
+
+  <img alt="GitHub" src="https://img.shields.io/github/license/cleysonsilvame/disk-pizza.svg">
 </p>
 
 <br>
