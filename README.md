@@ -18,7 +18,7 @@
 <br>
 
 <p align="center">
-  <img alt="App Disk-Pizza" src=".github//img-disk-pizza.png" width="100%">
+  <img alt="App Disk-Pizza" src=".github//img-disk-pizza.png" width="80%">
 </p>
 
 
@@ -41,9 +41,9 @@ O Disk-Pizza é uma aplicação de controle de pedidos, onde é possível cadast
 
 Você pode visualizar o modelo de negócio através [desse link](.github/modelo-de-negocio.pdf).
 
-## 🔖 DER
+## 📚 DER
 
-Você pode visualizar o DER através ![DER Disk-Pizza](/Disk-Pizza-Modelo-Logico.png "DER Disk-Pizza").
+Você pode visualizar o DER através ![DER Disk-Pizza](.github/Disk-Pizza-Modelo-Logico.png "DER Disk-Pizza").
 
 ## :memo: Licença
 
