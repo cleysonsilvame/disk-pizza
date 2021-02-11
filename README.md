@@ -5,8 +5,8 @@
 <p align="center">
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-Modelo de Negócio">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-DER">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-modelo-de-negócio">Modelo de Negócio</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-DER">DER</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#memo-licença">Licença</a>
 </p>
@@ -22,7 +22,6 @@
 <p align="center">
   <img alt="App Disk-Pizza" src=".github//img-disk-pizza.png" width="80%">
 </p>
-
 
 ## 🚀 Tecnologias
 
@@ -45,11 +44,11 @@ Você pode visualizar o modelo de negócio através [desse link](.github/modelo-
 
 ## 📚 DER
 
-Você pode visualizar o DER através [desse link](.github/Disk-Pizza-Modelo-Logico.png "DER Disk-Pizza").
+Você pode visualizar o DER através [desse link](.github/Disk-Pizza-Modelo-Logico.png 'DER Disk-Pizza').
 
 ## :memo: Licença
 
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE.md) para mais detalhes.
+Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
 
