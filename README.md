@@ -56,18 +56,16 @@ Você pode visualizar o DER através [desse link](.github/Disk-Pizza-Modelo-Logi
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-
-
 ### Autor
+
 ---
 
 <a href="https://github.com/cleysonsilvame/" title="Cleyson Silva">
- <img style="border-radius: 50%;" src="https://raw.githubusercontent.com/cleysonsilvame/cleysonsilvame/master/.github/cleyson-rounded.jpg" width="100px;" alt="Cleyson Silva""/>
+ <img style="border-radius: 50%;" src="https://raw.githubusercontent.com/cleysonsilvame/cleysonsilvame/master/.github/cleyson-rounded.jpg" width="100px;" alt="Cleyson Silva">
  <br />
 
- <sub><b>Cleyson Silva</b></sub> 🚀</a>
-
+<sub><b>Cleyson Silva</b></sub> 🚀</a>
 
 👋🏽 Entre em contato!
 
- [![Linkedin Badge](https://img.shields.io/badge/-Cleyson-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/tgmarinho/)](https://www.linkedin.com/in/cleyson-silva-639b01188/) [![Gmail Badge](https://img.shields.io/badge/-cleysonsilva.me@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:tgmarinho@gmail.com)](mailto:cleysonsilva.me@gmail.com)
+[![Linkedin Badge](https://img.shields.io/badge/-Cleyson-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/tgmarinho/)](https://www.linkedin.com/in/cleyson-silva-639b01188/) [![Gmail Badge](https://img.shields.io/badge/-cleysonsilva.me@gmail.com-c14438?style=flat-square&logo=Gmail&logoColor=white&link=mailto:cleysonsilva.me@gmail.com)](mailto:cleysonsilva.me@gmail.com)
