@@ -16,7 +16,7 @@
   </a>
 
   <a href="https://github.com/cleysonsilvame/disk-pizza/issues">
-    <img alt="Repository issues" src="https://img.shields.io/github/last-commit/cleysonsilvame/disk-pizza.svg">
+    <img alt="Repository issues" src="https://img.shields.io/github/issues/cleysonsilvame/disk-pizza.svg">
   </a>
 
   <img alt="GitHub" src="https://img.shields.io/github/license/cleysonsilvame/disk-pizza.svg">
