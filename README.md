@@ -60,7 +60,7 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 ---
 
 <a href="https://github.com/cleysonsilvame/" title="Cleyson Silva">
- <img style="border-radius: 50%;" src="https://raw.githubusercontent.com/cleysonsilvame/cleysonsilvame/master/.github/cleyson-rounded.jpg" width="100px;" alt="Cleyson Silva">
+ <img style="border-radius: 50%;" src="https://raw.githubusercontent.com/cleysonsilvame/cleysonsilvame/master/.github/cleyson-rounded.png" width="100px;" alt="Cleyson Silva">
  <br />
 
 <sub><b>Cleyson Silva</b></sub> 🚀</a>
